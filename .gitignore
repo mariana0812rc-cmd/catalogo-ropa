@@ -1,0 +1,7 @@
+target/
+*.class
+*.jar
+.idea/
+*.iml
+src/main/resources/application.properties
+src/main/resources/static/uploads/

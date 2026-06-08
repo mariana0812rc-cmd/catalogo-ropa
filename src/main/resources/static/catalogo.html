@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estefania Aguirre — Mi Estilo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rosa-bg:    #fce8e8;
+      --rosa-claro: #fdf0f0;
+      --rosa-borde: #f5c6c6;
+      --rosa-medio: #e8a0a0;
+      --acento:     #b85c5c;
+      --blanco:     #ffffff;
+      --negro:      #1a1a1a;
+      --gris:       #888;
+      --radio:      2px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', sans-serif; background: var(--rosa-bg); color: var(--negro); min-height: 100vh; }
+
+    header { background: var(--blanco); border-bottom: 1px solid var(--rosa-borde); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+    .nav-links { display: flex; gap: 2rem; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris); font-weight: 400; }
+    .logo-center { text-align: center; position: absolute; left: 50%; transform: translateX(-50%); }
+    .logo-center .nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--negro); line-height: 1; }
+    .logo-center .slogan { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; font-style: italic; letter-spacing: 0.22em; color: var(--gris); margin-top: 3px; }
+    .header-ig { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gris); text-decoration: none; text-transform: uppercase; }
+    .header-ig:hover { color: var(--acento); }
+
+    .hero { background: var(--blanco); border-bottom: 1px solid var(--rosa-borde); padding: 3.5rem 3rem 3rem; text-align: center; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--acento); font-weight: 400; margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 300; letter-spacing: 0.04em; color: var(--negro); line-height: 1.15; margin-bottom: 0.8rem; }
+    .hero h1 em { font-style: italic; font-weight: 300; color: var(--acento); }
+    .hero-direccion { font-size: 0.75rem; letter-spacing: 0.12em; color: var(--gris); font-weight: 300; margin-bottom: 0.3rem; }
+    .hero-sub { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); font-weight: 300; }
+    .hero-divider { width: 40px; height: 1px; background: var(--rosa-borde); margin: 1.5rem auto 0; }
+
+    .filtros-wrapper { background: var(--blanco); border-bottom: 1px solid var(--rosa-borde); padding: 1rem 3rem; display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-end; position: sticky; top: 64px; z-index: 90; }
+    .filtro-grupo label { display: block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); margin-bottom: 5px; font-weight: 400; }
+    .filtro-grupo select { border: 1px solid var(--rosa-borde); border-radius: 0; padding: 7px 32px 7px 12px; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 300; color: var(--negro); background: var(--blanco); cursor: pointer; outline: none; min-width: 155px; transition: border-color 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23b85c5c' d='M5 7L0 2h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+    .filtro-grupo select:focus { border-color: var(--acento); }
+    .btn-reset { background: transparent; color: var(--gris); border: 1px solid var(--rosa-borde); padding: 7px 18px; font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border-radius: 0; }
+    .btn-reset:hover { border-color: var(--acento); color: var(--acento); }
+    .contador { margin-left: auto; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); font-weight: 300; }
+    .contador span { color: var(--acento); font-weight: 500; }
+
+    .categorias { padding: 1.8rem 3rem 0; display: flex; gap: 0; border-bottom: 1px solid var(--rosa-borde); background: var(--rosa-bg); }
+    .cat-tab { background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--gris); padding: 0.6rem 1.4rem; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; cursor: pointer; transition: all 0.2s; margin-bottom: -1px; }
+    .cat-tab:hover { color: var(--negro); }
+    .cat-tab.activo { color: var(--negro); border-bottom-color: var(--acento); font-weight: 500; }
+
+    .catalogo { padding: 2rem 3rem 4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+
+    .card { background: var(--blanco); border: 1px solid var(--rosa-borde); overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; display: flex; flex-direction: column; animation: fadeUp 0.45s ease both; cursor: pointer; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+
+    .card-img { height: 200px; background: var(--rosa-claro); display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; border-bottom: 1px solid var(--rosa-borde); overflow: hidden; }
+    .badge-tipo { position: absolute; bottom: 10px; left: 10px; background: var(--blanco); color: var(--gris); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--rosa-borde); }
+    .badge-dot { position: absolute; top: 12px; right: 12px; width: 8px; height: 8px; border-radius: 50%; }
+    .badge-dot.si { background: #b5d5a8; }
+    .badge-dot.no { background: #e8a0a0; }
+
+    .card-body { padding: 1rem 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .card-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--negro); letter-spacing: 0.02em; line-height: 1.3; }
+    .card-marca { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); font-weight: 300; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .tag { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris); background: var(--rosa-claro); border: 1px solid var(--rosa-borde); padding: 2px 8px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--rosa-claro); flex-wrap: wrap; gap: 6px; }
+    .card-precio { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--negro); letter-spacing: 0.02em; min-width: 80px; }
+    .card-disponible { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; border: 1px solid; }
+    .card-disponible.si { color: #6a9e60; border-color: #b5d5a8; background: #f2f9f0; }
+    .card-disponible.no { color: var(--acento); border-color: var(--rosa-borde); background: var(--rosa-claro); }
+
+    .vacio { grid-column: 1/-1; text-align: center; padding: 5rem 2rem; color: var(--gris); }
+    .vacio .emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .vacio p { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+    .loading { grid-column: 1/-1; text-align: center; padding: 5rem; color: var(--gris); }
+    .spinner { width: 28px; height: 28px; border: 1.5px solid var(--rosa-borde); border-top-color: var(--acento); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer { background: var(--blanco); border-top: 1px solid var(--rosa-borde); padding: 2rem 3rem; text-align: center; }
+    .footer-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--negro); }
+    .footer-slogan { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.8rem; color: var(--gris); margin-top: 4px; letter-spacing: 0.15em; }
+    .footer-ig { display: inline-block; margin-top: 10px; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--acento); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      header, .filtros-wrapper, .categorias, .catalogo, footer { padding-left: 1rem; padding-right: 1rem; }
+      .nav-links { display: none; }
+      .filtros-wrapper { flex-direction: column; align-items: stretch; }
+      .contador { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-links"><span>Colección</span><span>Catálogo</span></div>
+  <div class="logo-center">
+    <div class="nombre">Estefania Aguirre</div>
+    <div class="slogan">mi estilo</div>
+  </div>
+  <a class="header-ig" href="https://www.instagram.com/_estefaniaaguirre" target="_blank">@_estefaniaaguirre</a>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Boutique · Pachuca, Hgo.</div>
+  <h1>Catálogo de <em>Ropa</em></h1>
+  <p class="hero-direccion">Av. Alejandro Hierro Berber #433 col. Forjadores, Pachuca Hgo.</p>
+  <p class="hero-sub">Marca 100% Mexicana &nbsp;·&nbsp; Asesora de imagen</p>
+  <div class="hero-divider"></div>
+</div>
+
+<div class="filtros-wrapper">
+  <div class="filtro-grupo">
+    <label>Tipo de prenda</label>
+    <select id="filtro-tipo">
+      <option value="">Todos los tipos</option>
+      <option value="camisas">Camisas</option>
+      <option value="blusas">Blusas</option>
+      <option value="tops">Tops</option>
+      <option value="corsets">Corsets</option>
+      <option value="playeras">Playeras</option>
+      <option value="sueteres">Suéteres</option>
+      <option value="chamarras">Chamarras</option>
+      <option value="jeans">Jeans</option>
+      <option value="leggings">Leggings</option>
+      <option value="pantalones">Pantalones</option>
+      <option value="shorts">Shorts</option>
+      <option value="faldas-plisadas">Faldas Plisadas</option>
+      <option value="faldas-lapiz">Faldas Lápiz</option>
+      <option value="faldas-mini">Faldas Mini</option>
+      <option value="vestidos-casual">Vestidos Casual</option>
+      <option value="vestidos-formal">Vestidos Formal</option>
+      <option value="vestidos-playa">Vestidos Playa</option>
+    </select>
+  </div>
+  <div class="filtro-grupo">
+    <label>Talla</label>
+    <select id="filtro-talla">
+      <option value="">Todas las tallas</option>
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>Unitalla</option>
+    </select>
+  </div>
+  <div class="filtro-grupo">
+    <label>Color</label>
+    <select id="filtro-color">
+      <option value="">Todos los colores</option>
+    </select>
+  </div>
+  <div class="filtro-grupo">
+    <label>Disponibilidad</label>
+    <select id="filtro-disp">
+      <option value="">Todas</option>
+      <option value="true">Disponibles</option>
+      <option value="false">Agotadas</option>
+    </select>
+  </div>
+  <button class="btn-reset" id="btn-reset">Limpiar filtros</button>
+  <div class="contador">Mostrando <span id="num-items">0</span> prendas</div>
+</div>
+
+<div class="categorias" id="tabs-categorias"></div>
+
+<div class="catalogo" id="catalogo">
+  <div class="loading">
+    <div class="spinner"></div>
+    <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;">Cargando colección…</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-nombre">Estefania Aguirre</div>
+  <div class="footer-slogan">mi estilo</div>
+  <a class="footer-ig" href="https://www.instagram.com/_estefaniaaguirre" target="_blank">@_estefaniaaguirre · Pachuca, Hgo.</a>
+</footer>
+
+<script>
+const BASE = 'http://localhost:8080';
+
+const ENDPOINTS = [
+  { url: '/api/camisas',         label: 'Camisa',      emoji: '👔', cat: 'Superior' },
+  { url: '/api/blusas',          label: 'Blusa',       emoji: '🌸', cat: 'Superior' },
+  { url: '/api/tops',            label: 'Top',         emoji: '👙', cat: 'Superior' },
+  { url: '/api/corsets',         label: 'Corset',      emoji: '🎀', cat: 'Superior' },
+  { url: '/api/playeras',        label: 'Playera',     emoji: '👕', cat: 'Superior' },
+  { url: '/api/sueteres',        label: 'Suéter',      emoji: '🧶', cat: 'Superior' },
+  { url: '/api/chamarras',       label: 'Chamarra',    emoji: '🧥', cat: 'Superior' },
+  { url: '/api/jeans',           label: 'Jean',        emoji: '👖', cat: 'Inferior' },
+  { url: '/api/leggings',        label: 'Legging',     emoji: '🖤', cat: 'Inferior' },
+  { url: '/api/pantalones',      label: 'Pantalón',    emoji: '👗', cat: 'Inferior' },
+  { url: '/api/shorts',          label: 'Shorts',      emoji: '🩳', cat: 'Inferior' },
+  { url: '/api/faldas-plisadas', label: 'F. Plisada',  emoji: '🌷', cat: 'Inferior' },
+  { url: '/api/faldas-lapiz',    label: 'F. Lápiz',    emoji: '✏️', cat: 'Inferior' },
+  { url: '/api/faldas-mini',     label: 'F. Mini',     emoji: '💕', cat: 'Inferior' },
+  { url: '/api/vestidos-casual', label: 'V. Casual',   emoji: '🌼', cat: 'Vestidos' },
+  { url: '/api/vestidos-formal', label: 'V. Formal',   emoji: '✨', cat: 'Vestidos' },
+  { url: '/api/vestidos-playa',  label: 'V. Playa',    emoji: '🌊', cat: 'Vestidos' }
+];
+
+let todasLasPrendas = [];
+let categoriaActiva = 'Todas';
+
+async function cargarTodo() {
+  const promesas = ENDPOINTS.map(function(e) {
+    return fetch(BASE + e.url)
+      .then(function(r) { return r.json(); })
+      .then(function(items) {
+        return items.map(function(item) {
+          return Object.assign({}, item, {
+            _label: e.label,
+            _emoji: e.emoji,
+            _cat: e.cat,
+            _url: e.url.replace('/api/', '')
+          });
+        });
+      })
+      .catch(function() { return []; });
+  });
+  const resultados = await Promise.all(promesas);
+  todasLasPrendas = resultados.reduce(function(a, b) { return a.concat(b); }, []);
+  poblarFiltroColores();
+  renderTabs();
+  renderCatalogo();
+}
+
+function poblarFiltroColores() {
+  const colores = todasLasPrendas
+    .map(function(p) { return p.color; })
+    .filter(function(c) { return c; });
+  const unicos = colores.filter(function(c, i) { return colores.indexOf(c) === i; }).sort();
+  const sel = document.getElementById('filtro-color');
+  unicos.forEach(function(c) {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+    sel.appendChild(opt);
+  });
+}
+
+function renderTabs() {
+  const cats = ['Todas', 'Superior', 'Inferior', 'Vestidos'];
+  const cont = document.getElementById('tabs-categorias');
+  cont.innerHTML = '';
+  cats.forEach(function(c) {
+    const btn = document.createElement('button');
+    btn.className = 'cat-tab' + (c === categoriaActiva ? ' activo' : '');
+    btn.textContent = c;
+    btn.addEventListener('click', function() {
+      categoriaActiva = c;
+      renderTabs();
+      renderCatalogo();
+    });
+    cont.appendChild(btn);
+  });
+}
+
+function renderCatalogo() {
+  const talla = document.getElementById('filtro-talla').value;
+  const color = document.getElementById('filtro-color').value;
+  const disp  = document.getElementById('filtro-disp').value;
+  const tipo  = document.getElementById('filtro-tipo').value;
+
+  var prendas = todasLasPrendas.slice();
+
+  if (categoriaActiva !== 'Todas') {
+    prendas = prendas.filter(function(p) { return p._cat === categoriaActiva; });
+  }
+  if (tipo) {
+    prendas = prendas.filter(function(p) { return p._url === tipo; });
+  }
+  if (talla) {
+    prendas = prendas.filter(function(p) { return p.talla === talla; });
+  }
+  if (color) {
+    prendas = prendas.filter(function(p) { return p.color === color; });
+  }
+  if (disp !== '') {
+    prendas = prendas.filter(function(p) { return String(p.disponible) === disp; });
+  }
+
+  document.getElementById('num-items').textContent = prendas.length;
+
+  const cont = document.getElementById('catalogo');
+  if (prendas.length === 0) {
+    cont.innerHTML = '<div class="vacio"><div class="emoji">🔍</div><p>Sin resultados para esos filtros</p></div>';
+    return;
+  }
+  cont.innerHTML = prendas.map(function(p, i) { return crearCard(p, i); }).join('');
+}
+
+function crearCard(p, i) {
+  const disp = p.disponible;
+  const tags = [p.talla, p.color, p.material, p.corte, p.largo, p.manga, p.estilo, p.escote, p.lavado, p.cuello]
+    .filter(function(t) { return t; }).slice(0, 4);
+  const tagsHTML = tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+
+  const imgContenido = p.imagenUrl
+    ? '<img src="' + p.imagenUrl + '" alt="' + p.nombre + '" style="width:100%;height:100%;object-fit:cover;display:block"/>'
+    : p._emoji;
+
+  return '<div class="card" style="animation-delay:' + (i * 0.035) + 's">'
+    + '<div class="card-img" style="' + (p.imagenUrl ? 'padding:0;font-size:0' : '') + '">'
+    + imgContenido
+    + '<span class="badge-tipo">' + p._label + '</span>'
+    + '<span class="badge-dot ' + (disp ? 'si' : 'no') + '"></span>'
+    + '</div>'
+    + '<div class="card-body">'
+    + '<div class="card-nombre">' + p.nombre + '</div>'
+    + '<div class="card-marca">' + p.marca + '</div>'
+    + '<div class="card-tags">' + tagsHTML + '</div>'
+    + '<div class="card-footer">'
+    + '<div class="card-precio">$' + Number(p.precio).toLocaleString('es-MX', {minimumFractionDigits: 2}) + '</div>'
+    + '<span class="card-disponible ' + (disp ? 'si' : 'no') + '">' + (disp ? 'Disponible' : 'Agotado') + '</span>'
+    + '</div></div></div>';
+}
+
+function resetFiltros() {
+  document.getElementById('filtro-tipo').value  = '';
+  document.getElementById('filtro-talla').value = '';
+  document.getElementById('filtro-color').value = '';
+  document.getElementById('filtro-disp').value  = '';
+  categoriaActiva = 'Todas';
+  renderTabs();
+  renderCatalogo();
+}
+
+document.getElementById('filtro-tipo').addEventListener('change', renderCatalogo);
+document.getElementById('filtro-talla').addEventListener('change', renderCatalogo);
+document.getElementById('filtro-color').addEventListener('change', renderCatalogo);
+document.getElementById('filtro-disp').addEventListener('change', renderCatalogo);
+document.getElementById('btn-reset').addEventListener('click', resetFiltros);
+
+cargarTodo();
+</script>
+</body>
+</html>
