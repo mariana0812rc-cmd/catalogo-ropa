@@ -1,34 +1,38 @@
 package com.catalogo.ropa.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.nio.file.*;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/imagenes")
 @CrossOrigin(origins = "*")
 public class ImagenController {
 
-    private final Path carpeta = Paths.get("static/uploads");
+    private final Cloudinary cloudinary;
+
+    public ImagenController() {
+        this.cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", System.getenv("CLOUDINARY_CLOUD_NAME"),
+                "api_key",    System.getenv("CLOUDINARY_API_KEY"),
+                "api_secret", System.getenv("CLOUDINARY_API_SECRET")
+        ));
+    }
 
     @PostMapping("/subir")
     public ResponseEntity<Map<String, String>> subirImagen(
             @RequestParam("archivo") MultipartFile archivo) throws IOException {
 
-        Files.createDirectories(carpeta);
+        Map resultado = cloudinary.uploader().upload(
+                archivo.getBytes(),
+                ObjectUtils.asMap("folder", "estefania-aguirre")
+        );
 
-        String extension = archivo.getOriginalFilename()
-                .substring(archivo.getOriginalFilename().lastIndexOf("."));
-        String nombreArchivo = UUID.randomUUID().toString() + extension;
-
-        Path destino = carpeta.resolve(nombreArchivo);
-        Files.copy(archivo.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
-
-        String url = "/uploads/" + nombreArchivo;
+        String url = (String) resultado.get("secure_url");
         return ResponseEntity.ok(Map.of("url", url));
     }
 }
