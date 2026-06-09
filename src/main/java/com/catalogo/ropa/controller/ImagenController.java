@@ -16,10 +16,15 @@ public class ImagenController {
     private final Cloudinary cloudinary;
 
     public ImagenController() {
+        String cloudName = System.getenv("CLOUDINARY_CLOUD_NAME");
+        String apiKey = System.getenv("CLOUDINARY_API_KEY");
+        String apiSecret = System.getenv("CLOUDINARY_API_SECRET");
+        System.out.println("CLOUDINARY_CLOUD_NAME = " + cloudName);
+        System.out.println("CLOUDINARY_API_KEY = " + apiKey);
         this.cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", System.getenv("CLOUDINARY_CLOUD_NAME"),
-                "api_key",    System.getenv("CLOUDINARY_API_KEY"),
-                "api_secret", System.getenv("CLOUDINARY_API_SECRET")
+                "cloud_name", cloudName,
+                "api_key",    apiKey,
+                "api_secret", apiSecret
         ));
     }
 
