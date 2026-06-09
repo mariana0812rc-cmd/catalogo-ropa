@@ -183,162 +183,162 @@
 </footer>
 
 <script>
-const BASE = 'http://localhost:8080';
+  const BASE = 'https://tu-url.up.railway.app';
 
-const ENDPOINTS = [
-  { url: '/api/camisas',         label: 'Camisa',      emoji: '👔', cat: 'Superior' },
-  { url: '/api/blusas',          label: 'Blusa',       emoji: '🌸', cat: 'Superior' },
-  { url: '/api/tops',            label: 'Top',         emoji: '👙', cat: 'Superior' },
-  { url: '/api/corsets',         label: 'Corset',      emoji: '🎀', cat: 'Superior' },
-  { url: '/api/playeras',        label: 'Playera',     emoji: '👕', cat: 'Superior' },
-  { url: '/api/sueteres',        label: 'Suéter',      emoji: '🧶', cat: 'Superior' },
-  { url: '/api/chamarras',       label: 'Chamarra',    emoji: '🧥', cat: 'Superior' },
-  { url: '/api/jeans',           label: 'Jean',        emoji: '👖', cat: 'Inferior' },
-  { url: '/api/leggings',        label: 'Legging',     emoji: '🖤', cat: 'Inferior' },
-  { url: '/api/pantalones',      label: 'Pantalón',    emoji: '👗', cat: 'Inferior' },
-  { url: '/api/shorts',          label: 'Shorts',      emoji: '🩳', cat: 'Inferior' },
-  { url: '/api/faldas-plisadas', label: 'F. Plisada',  emoji: '🌷', cat: 'Inferior' },
-  { url: '/api/faldas-lapiz',    label: 'F. Lápiz',    emoji: '✏️', cat: 'Inferior' },
-  { url: '/api/faldas-mini',     label: 'F. Mini',     emoji: '💕', cat: 'Inferior' },
-  { url: '/api/vestidos-casual', label: 'V. Casual',   emoji: '🌼', cat: 'Vestidos' },
-  { url: '/api/vestidos-formal', label: 'V. Formal',   emoji: '✨', cat: 'Vestidos' },
-  { url: '/api/vestidos-playa',  label: 'V. Playa',    emoji: '🌊', cat: 'Vestidos' }
-];
+  const ENDPOINTS = [
+    { url: '/api/camisas',         label: 'Camisa',      emoji: '👔', cat: 'Superior' },
+    { url: '/api/blusas',          label: 'Blusa',       emoji: '🌸', cat: 'Superior' },
+    { url: '/api/tops',            label: 'Top',         emoji: '👙', cat: 'Superior' },
+    { url: '/api/corsets',         label: 'Corset',      emoji: '🎀', cat: 'Superior' },
+    { url: '/api/playeras',        label: 'Playera',     emoji: '👕', cat: 'Superior' },
+    { url: '/api/sueteres',        label: 'Suéter',      emoji: '🧶', cat: 'Superior' },
+    { url: '/api/chamarras',       label: 'Chamarra',    emoji: '🧥', cat: 'Superior' },
+    { url: '/api/jeans',           label: 'Jean',        emoji: '👖', cat: 'Inferior' },
+    { url: '/api/leggings',        label: 'Legging',     emoji: '🖤', cat: 'Inferior' },
+    { url: '/api/pantalones',      label: 'Pantalón',    emoji: '👗', cat: 'Inferior' },
+    { url: '/api/shorts',          label: 'Shorts',      emoji: '🩳', cat: 'Inferior' },
+    { url: '/api/faldas-plisadas', label: 'F. Plisada',  emoji: '🌷', cat: 'Inferior' },
+    { url: '/api/faldas-lapiz',    label: 'F. Lápiz',    emoji: '✏️', cat: 'Inferior' },
+    { url: '/api/faldas-mini',     label: 'F. Mini',     emoji: '💕', cat: 'Inferior' },
+    { url: '/api/vestidos-casual', label: 'V. Casual',   emoji: '🌼', cat: 'Vestidos' },
+    { url: '/api/vestidos-formal', label: 'V. Formal',   emoji: '✨', cat: 'Vestidos' },
+    { url: '/api/vestidos-playa',  label: 'V. Playa',    emoji: '🌊', cat: 'Vestidos' }
+  ];
 
-let todasLasPrendas = [];
-let categoriaActiva = 'Todas';
+  let todasLasPrendas = [];
+  let categoriaActiva = 'Todas';
 
-async function cargarTodo() {
-  const promesas = ENDPOINTS.map(function(e) {
-    return fetch(BASE + e.url)
-      .then(function(r) { return r.json(); })
-      .then(function(items) {
-        return items.map(function(item) {
-          return Object.assign({}, item, {
-            _label: e.label,
-            _emoji: e.emoji,
-            _cat: e.cat,
-            _url: e.url.replace('/api/', '')
+  async function cargarTodo() {
+    const promesas = ENDPOINTS.map(function(e) {
+      return fetch(BASE + e.url)
+        .then(function(r) { return r.json(); })
+        .then(function(items) {
+          return items.map(function(item) {
+            return Object.assign({}, item, {
+              _label: e.label,
+              _emoji: e.emoji,
+              _cat: e.cat,
+              _url: e.url.replace('/api/', '')
+            });
           });
-        });
-      })
-      .catch(function() { return []; });
-  });
-  const resultados = await Promise.all(promesas);
-  todasLasPrendas = resultados.reduce(function(a, b) { return a.concat(b); }, []);
-  poblarFiltroColores();
-  renderTabs();
-  renderCatalogo();
-}
-
-function poblarFiltroColores() {
-  const colores = todasLasPrendas
-    .map(function(p) { return p.color; })
-    .filter(function(c) { return c; });
-  const unicos = colores.filter(function(c, i) { return colores.indexOf(c) === i; }).sort();
-  const sel = document.getElementById('filtro-color');
-  unicos.forEach(function(c) {
-    const opt = document.createElement('option');
-    opt.value = c;
-    opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
-    sel.appendChild(opt);
-  });
-}
-
-function renderTabs() {
-  const cats = ['Todas', 'Superior', 'Inferior', 'Vestidos'];
-  const cont = document.getElementById('tabs-categorias');
-  cont.innerHTML = '';
-  cats.forEach(function(c) {
-    const btn = document.createElement('button');
-    btn.className = 'cat-tab' + (c === categoriaActiva ? ' activo' : '');
-    btn.textContent = c;
-    btn.addEventListener('click', function() {
-      categoriaActiva = c;
-      renderTabs();
-      renderCatalogo();
+        })
+        .catch(function() { return []; });
     });
-    cont.appendChild(btn);
-  });
-}
-
-function renderCatalogo() {
-  const talla = document.getElementById('filtro-talla').value;
-  const color = document.getElementById('filtro-color').value;
-  const disp  = document.getElementById('filtro-disp').value;
-  const tipo  = document.getElementById('filtro-tipo').value;
-
-  var prendas = todasLasPrendas.slice();
-
-  if (categoriaActiva !== 'Todas') {
-    prendas = prendas.filter(function(p) { return p._cat === categoriaActiva; });
-  }
-  if (tipo) {
-    prendas = prendas.filter(function(p) { return p._url === tipo; });
-  }
-  if (talla) {
-    prendas = prendas.filter(function(p) { return p.talla === talla; });
-  }
-  if (color) {
-    prendas = prendas.filter(function(p) { return p.color === color; });
-  }
-  if (disp !== '') {
-    prendas = prendas.filter(function(p) { return String(p.disponible) === disp; });
+    const resultados = await Promise.all(promesas);
+    todasLasPrendas = resultados.reduce(function(a, b) { return a.concat(b); }, []);
+    poblarFiltroColores();
+    renderTabs();
+    renderCatalogo();
   }
 
-  document.getElementById('num-items').textContent = prendas.length;
-
-  const cont = document.getElementById('catalogo');
-  if (prendas.length === 0) {
-    cont.innerHTML = '<div class="vacio"><div class="emoji">🔍</div><p>Sin resultados para esos filtros</p></div>';
-    return;
+  function poblarFiltroColores() {
+    const colores = todasLasPrendas
+      .map(function(p) { return p.color; })
+      .filter(function(c) { return c; });
+    const unicos = colores.filter(function(c, i) { return colores.indexOf(c) === i; }).sort();
+    const sel = document.getElementById('filtro-color');
+    unicos.forEach(function(c) {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+      sel.appendChild(opt);
+    });
   }
-  cont.innerHTML = prendas.map(function(p, i) { return crearCard(p, i); }).join('');
-}
 
-function crearCard(p, i) {
-  const disp = p.disponible;
-  const tags = [p.talla, p.color, p.material, p.corte, p.largo, p.manga, p.estilo, p.escote, p.lavado, p.cuello]
-    .filter(function(t) { return t; }).slice(0, 4);
-  const tagsHTML = tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+  function renderTabs() {
+    const cats = ['Todas', 'Superior', 'Inferior', 'Vestidos'];
+    const cont = document.getElementById('tabs-categorias');
+    cont.innerHTML = '';
+    cats.forEach(function(c) {
+      const btn = document.createElement('button');
+      btn.className = 'cat-tab' + (c === categoriaActiva ? ' activo' : '');
+      btn.textContent = c;
+      btn.addEventListener('click', function() {
+        categoriaActiva = c;
+        renderTabs();
+        renderCatalogo();
+      });
+      cont.appendChild(btn);
+    });
+  }
 
-  const imgContenido = p.imagenUrl
-    ? '<img src="' + p.imagenUrl + '" alt="' + p.nombre + '" style="width:100%;height:100%;object-fit:cover;display:block"/>'
-    : p._emoji;
+  function renderCatalogo() {
+    const talla = document.getElementById('filtro-talla').value;
+    const color = document.getElementById('filtro-color').value;
+    const disp  = document.getElementById('filtro-disp').value;
+    const tipo  = document.getElementById('filtro-tipo').value;
 
-  return '<div class="card" style="animation-delay:' + (i * 0.035) + 's">'
-    + '<div class="card-img" style="' + (p.imagenUrl ? 'padding:0;font-size:0' : '') + '">'
-    + imgContenido
-    + '<span class="badge-tipo">' + p._label + '</span>'
-    + '<span class="badge-dot ' + (disp ? 'si' : 'no') + '"></span>'
-    + '</div>'
-    + '<div class="card-body">'
-    + '<div class="card-nombre">' + p.nombre + '</div>'
-    + '<div class="card-marca">' + p.marca + '</div>'
-    + '<div class="card-tags">' + tagsHTML + '</div>'
-    + '<div class="card-footer">'
-    + '<div class="card-precio">$' + Number(p.precio).toLocaleString('es-MX', {minimumFractionDigits: 2}) + '</div>'
-    + '<span class="card-disponible ' + (disp ? 'si' : 'no') + '">' + (disp ? 'Disponible' : 'Agotado') + '</span>'
-    + '</div></div></div>';
-}
+    var prendas = todasLasPrendas.slice();
 
-function resetFiltros() {
-  document.getElementById('filtro-tipo').value  = '';
-  document.getElementById('filtro-talla').value = '';
-  document.getElementById('filtro-color').value = '';
-  document.getElementById('filtro-disp').value  = '';
-  categoriaActiva = 'Todas';
-  renderTabs();
-  renderCatalogo();
-}
+    if (categoriaActiva !== 'Todas') {
+      prendas = prendas.filter(function(p) { return p._cat === categoriaActiva; });
+    }
+    if (tipo) {
+      prendas = prendas.filter(function(p) { return p._url === tipo; });
+    }
+    if (talla) {
+      prendas = prendas.filter(function(p) { return p.talla === talla; });
+    }
+    if (color) {
+      prendas = prendas.filter(function(p) { return p.color === color; });
+    }
+    if (disp !== '') {
+      prendas = prendas.filter(function(p) { return String(p.disponible) === disp; });
+    }
 
-document.getElementById('filtro-tipo').addEventListener('change', renderCatalogo);
-document.getElementById('filtro-talla').addEventListener('change', renderCatalogo);
-document.getElementById('filtro-color').addEventListener('change', renderCatalogo);
-document.getElementById('filtro-disp').addEventListener('change', renderCatalogo);
-document.getElementById('btn-reset').addEventListener('click', resetFiltros);
+    document.getElementById('num-items').textContent = prendas.length;
 
-cargarTodo();
+    const cont = document.getElementById('catalogo');
+    if (prendas.length === 0) {
+      cont.innerHTML = '<div class="vacio"><div class="emoji">🔍</div><p>Sin resultados para esos filtros</p></div>';
+      return;
+    }
+    cont.innerHTML = prendas.map(function(p, i) { return crearCard(p, i); }).join('');
+  }
+
+  function crearCard(p, i) {
+    const disp = p.disponible;
+    const tags = [p.talla, p.color, p.material, p.corte, p.largo, p.manga, p.estilo, p.escote, p.lavado, p.cuello]
+      .filter(function(t) { return t; }).slice(0, 4);
+    const tagsHTML = tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+
+    const imgContenido = p.imagenUrl
+      ? '<img src="' + p.imagenUrl + '" alt="' + p.nombre + '" style="width:100%;height:100%;object-fit:cover;display:block"/>'
+      : p._emoji;
+
+    return '<div class="card" style="animation-delay:' + (i * 0.035) + 's">'
+      + '<div class="card-img" style="' + (p.imagenUrl ? 'padding:0;font-size:0' : '') + '">'
+      + imgContenido
+      + '<span class="badge-tipo">' + p._label + '</span>'
+      + '<span class="badge-dot ' + (disp ? 'si' : 'no') + '"></span>'
+      + '</div>'
+      + '<div class="card-body">'
+      + '<div class="card-nombre">' + p.nombre + '</div>'
+      + '<div class="card-marca">' + p.marca + '</div>'
+      + '<div class="card-tags">' + tagsHTML + '</div>'
+      + '<div class="card-footer">'
+      + '<div class="card-precio">$' + Number(p.precio).toLocaleString('es-MX', {minimumFractionDigits: 2}) + '</div>'
+      + '<span class="card-disponible ' + (disp ? 'si' : 'no') + '">' + (disp ? 'Disponible' : 'Agotado') + '</span>'
+      + '</div></div></div>';
+  }
+
+  function resetFiltros() {
+    document.getElementById('filtro-tipo').value  = '';
+    document.getElementById('filtro-talla').value = '';
+    document.getElementById('filtro-color').value = '';
+    document.getElementById('filtro-disp').value  = '';
+    categoriaActiva = 'Todas';
+    renderTabs();
+    renderCatalogo();
+  }
+
+  document.getElementById('filtro-tipo').addEventListener('change', renderCatalogo);
+  document.getElementById('filtro-talla').addEventListener('change', renderCatalogo);
+  document.getElementById('filtro-color').addEventListener('change', renderCatalogo);
+  document.getElementById('filtro-disp').addEventListener('change', renderCatalogo);
+  document.getElementById('btn-reset').addEventListener('click', resetFiltros);
+
+  cargarTodo();
 </script>
 </body>
 </html>
