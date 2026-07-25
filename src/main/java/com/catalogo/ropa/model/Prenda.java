@@ -1,6 +1,8 @@
 package com.catalogo.ropa.model;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class Prenda {
@@ -13,6 +15,10 @@ public abstract class Prenda {
     private String marca;
     private double precio;
     private boolean disponible;
+    private String imagenUrl;
+
+    @ElementCollection
+    private List<String> imagenes = new ArrayList<>();
 
     public Prenda() {}
 
@@ -35,9 +41,8 @@ public abstract class Prenda {
     public void setPrecio(double precio) { this.precio = precio; }
     public boolean isDisponible() { return disponible; }
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
-
-
-    private String imagenUrl;
     public String getImagenUrl() { return imagenUrl; }
     public void setImagenUrl(String imagenUrl) { this.imagenUrl = imagenUrl; }
+    public List<String> getImagenes() { return imagenes; }
+    public void setImagenes(List<String> imagenes) { this.imagenes = imagenes; }
 }
