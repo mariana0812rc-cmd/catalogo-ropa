@@ -388,6 +388,9 @@ tr:hover td { background:var(--rosa-claro); }
        if (c === 'imagenUrl') {
          return '<div class="form-field full"><label>Imagen de la prenda</label><div style="display:flex;gap:10px;align-items:center;"><input type="file" id="campo-archivo" accept="image/*" onchange="previsualizarImagen(this)" style="font-size:0.78rem;border:1px solid var(--rosa-borde);padding:6px;flex:1"/><img id="preview-img" src="' + (val || '') + '" style="width:60px;height:60px;object-fit:cover;border:1px solid var(--rosa-borde);display:' + (val ? 'block' : 'none') + '"/></div><input type="hidden" id="campo-imagenUrl" value="' + (val || '') + '"/></div>';
        }
+       if (c === 'marca') {
+  return '<div class="form-field' + full + '"><label>Marca</label><select id="campo-marca" style="border:1px solid var(--rosa-borde);padding:8px 10px;font-family:\'Jost\',sans-serif;font-size:0.82rem;width:100%;outline:none;"><option value="Estefanía Aguirre"' + (val === "Estefanía Aguirre" ? " selected" : "") + '>Estefanía Aguirre</option><option value="Estefanía Curvy"' + (val === "Estefanía Curvy" ? " selected" : "") + '>Estefanía Curvy</option></select></div>';
+}
        if (BOOL_CAMPOS.includes(c)) {
          return '<div class="form-field' + full + '"><label>' + c + '</label><select id="campo-' + c + '"><option value="true"' + (val === true ? ' selected' : '') + '>Sí</option><option value="false"' + (val === false ? ' selected' : '') + '>No</option></select></div>';
        }
