@@ -1,4 +1,3 @@
-// GenericPrendaService.java
 package com.catalogo.ropa.service;
 import com.catalogo.ropa.model.Prenda;
 import com.catalogo.ropa.repository.PrendaRepository;

@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "blusas")
 public class Blusa extends PrendaSuperior {
 
-    private String escote;    // redondo, v, cuadrado, off-shoulder
-    private String material;  // seda, algodón, chiffon
+    private String escote;
+    private String material;
 
     public Blusa() {}
 
@@ -21,7 +21,6 @@ public class Blusa extends PrendaSuperior {
 
     @Override
     public String getTipo() { return "Blusa"; }
-
     public String getEscote() { return escote; }
     public void setEscote(String escote) { this.escote = escote; }
     public String getMaterial() { return material; }

@@ -18,10 +18,6 @@ public abstract class GenericPrendaController<T extends Prenda> {
     public T crear(@RequestBody T item) { return service.guardar(item); }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) { service.eliminar(id); }
-
-
-
-
     @PutMapping("/{id}")
     public T actualizar(@PathVariable Long id, @RequestBody T item) {
         item.setId(id);

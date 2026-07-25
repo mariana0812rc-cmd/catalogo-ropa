@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "jeans")
 public class Jean extends PrendaInferior {
 
-    private String lavado;  // claro, oscuro, rotos, desteñido
+    private String lavado;
 
     public Jean() {}
 
