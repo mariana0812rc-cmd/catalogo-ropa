@@ -72,5 +72,13 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<profiles>
+		<profile>
+			<id>production</id>
+			<properties>
+				<!-- Add production-specific properties here -->
+			</properties>
+			<!-- You can also include <dependencies> or <build> configurations -->
+		</profile>
+	</profiles>
 </project>
