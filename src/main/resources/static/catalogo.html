@@ -305,6 +305,10 @@ footer { background: var(--blanco); border-top: 1px solid var(--rosa-borde); pad
       <option value="vestidos-casual">Vestidos Casual</option>
       <option value="vestidos-formal">Vestidos Formal</option>
       <option value="vestidos-playa">Vestidos Playa</option>
+      <option value="abrigos">Abrigos</option>
+      <option value="blazers">Blazers</option>
+      <option value="palazzos">Palazzos</option>
+      <option value="jumpers">Jumpers</option>
     </select>
   </div>
   <div class="filtro-grupo">
@@ -353,8 +357,9 @@ footer { background: var(--blanco); border-top: 1px solid var(--rosa-borde); pad
     { url: '/api/corsets',         label: 'Corset',      emoji: '🎀', cat: 'Superior' },
     { url: '/api/playeras',        label: 'Playera',     emoji: '👕', cat: 'Superior' },
     { url: '/api/sueteres',        label: 'Suéter',      emoji: '🧶', cat: 'Superior' },
-    { url: '/api/chamarras',       label: 'Chamarra',    emoji: '🥼', cat: 'Superior' },
-
+    { url: '/api/chamarras', label: 'Chamarra', emoji: '🧥', cat: 'Superior' },
+{ url: '/api/abrigos',   label: 'Abrigo',   emoji: '🧣', cat: 'Superior' },
+{ url: '/api/blazers',   label: 'Blazer',   emoji: '🥼', cat: 'Superior' },
     { url: '/api/jeans',           label: 'Jean',        emoji: '👖', cat: 'Inferior' },
     { url: '/api/leggings',        label: 'Legging',     emoji: '🖤', cat: 'Inferior' },
     { url: '/api/pantalones',      label: 'Pantalón',    emoji: '👗', cat: 'Inferior' },
@@ -362,9 +367,11 @@ footer { background: var(--blanco); border-top: 1px solid var(--rosa-borde); pad
     { url: '/api/faldas-plisadas', label: 'F. Plisada',  emoji: '🌷', cat: 'Inferior' },
     { url: '/api/faldas-lapiz',    label: 'F. Lápiz',    emoji: '✏️', cat: 'Inferior' },
     { url: '/api/faldas-mini',     label: 'F. Mini',     emoji: '💕', cat: 'Inferior' },
-    { url: '/api/vestidos-casual', label: 'V. Casual',   emoji: '🌼', cat: 'Vestidos' },
-    { url: '/api/vestidos-formal', label: 'V. Formal',   emoji: '✨', cat: 'Vestidos' },
-    { url: '/api/vestidos-playa',  label: 'V. Playa',    emoji: '🌊', cat: 'Vestidos' }
+    { url: '/api/vestidos-casual', label: 'V. Casual', emoji: '🌼', cat: 'Cuerpo completo' },
+{ url: '/api/vestidos-formal', label: 'V. Formal', emoji: '✨', cat: 'Cuerpo completo' },
+{ url: '/api/vestidos-playa',  label: 'V. Playa',  emoji: '🌊', cat: 'Cuerpo completo' },
+{ url: '/api/palazzos',        label: 'Palazzo',   emoji: '👘', cat: 'Cuerpo completo' },
+{ url: '/api/jumpers',         label: 'Jumper',    emoji: '🩱', cat: 'Cuerpo completo' },
   ];
 
   let todasLasPrendas = [];
@@ -408,7 +415,7 @@ footer { background: var(--blanco); border-top: 1px solid var(--rosa-borde); pad
   }
 
   function renderTabs() {
-    const cats = ['Todas', 'Superior', 'Inferior', 'Vestidos'];
+    const cats = ['Todas', 'Superior', 'Inferior', 'Cuerpo completo'];
     const cont = document.getElementById('tabs-categorias');
     cont.innerHTML = '';
     cats.forEach(function(c) {

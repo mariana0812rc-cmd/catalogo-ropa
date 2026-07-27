@@ -213,7 +213,8 @@ tr:hover td { background:var(--rosa-claro); }
       <div class="sidebar-item" data-seccion="playeras" data-titulo="Playeras"><span class="sidebar-emoji">👕</span> Playeras</div>
       <div class="sidebar-item" data-seccion="sueteres" data-titulo="Suéteres"><span class="sidebar-emoji">🧶</span> Suéteres</div>
       <div class="sidebar-item" data-seccion="chamarras" data-titulo="Chamarras"><span class="sidebar-emoji">🥼</span> Chamarras</div>
-
+      <div class="sidebar-item" data-seccion="abrigos" data-titulo="Abrigos"><span class="sidebar-emoji">🧣</span> Abrigos</div>
+      <div class="sidebar-item" data-seccion="blazers" data-titulo="Blazers"><span class="sidebar-emoji">🥼</span> Blazers</div>
       <div class="sidebar-section">Inferiores</div>
       <div class="sidebar-item" data-seccion="jeans" data-titulo="Jeans"><span class="sidebar-emoji">👖</span> Jeans</div>
       <div class="sidebar-item" data-seccion="leggings" data-titulo="Leggings"><span class="sidebar-emoji">🖤</span> Leggings</div>
@@ -223,10 +224,12 @@ tr:hover td { background:var(--rosa-claro); }
       <div class="sidebar-item" data-seccion="faldas-plisadas" data-titulo="Faldas Plisadas"><span class="sidebar-emoji">🌷</span> Plisadas</div>
       <div class="sidebar-item" data-seccion="faldas-lapiz" data-titulo="Faldas Lápiz"><span class="sidebar-emoji">✏️</span> Lápiz</div>
       <div class="sidebar-item" data-seccion="faldas-mini" data-titulo="Faldas Mini"><span class="sidebar-emoji">💕</span> Mini</div>
-      <div class="sidebar-section">Vestidos</div>
+      <div class="sidebar-section">Cuerpo Completo</div>
       <div class="sidebar-item" data-seccion="vestidos-casual" data-titulo="Vestidos Casual"><span class="sidebar-emoji">🌼</span> Casual</div>
       <div class="sidebar-item" data-seccion="vestidos-formal" data-titulo="Vestidos Formal"><span class="sidebar-emoji">✨</span> Formal</div>
       <div class="sidebar-item" data-seccion="vestidos-playa" data-titulo="Vestidos Playa"><span class="sidebar-emoji">🌊</span> Playa</div>
+      <div class="sidebar-item" data-seccion="palazzos" data-titulo="Palazzos"><span class="sidebar-emoji">👘</span> Palazzos</div>
+      <div class="sidebar-item" data-seccion="jumpers" data-titulo="Jumpers"><span class="sidebar-emoji">🩱</span> Jumpers</div>
     </div>
     <div class="content">
       <div class="content-header">
@@ -283,6 +286,11 @@ tr:hover td { background:var(--rosa-claro); }
      'vestidos-casual': ['nombre','marca','precio','disponible','talla','color','largo','estampado','manga','imagenUrl'],
      'vestidos-formal': ['nombre','marca','precio','disponible','talla','color','largo','escote','tren','imagenUrl'],
      'vestidos-playa':  ['nombre','marca','precio','disponible','talla','color','largo','material','tirantes','imagenUrl']
+     ,
+'abrigos':  ['nombre','marca','precio','disponible','talla','color','material','cierre','capucha','imagenUrl'],
+'blazers':  ['nombre','marca','precio','disponible','talla','color','material','largo','imagenUrl'],
+'palazzos': ['nombre','marca','precio','disponible','talla','color','largo','material','manga','imagenUrl'],
+'jumpers':  ['nombre','marca','precio','disponible','talla','color','largo','material','forma','imagenUrl']
    };
 
    const BOOL_CAMPOS = ['disponible','abertura','tren'];
