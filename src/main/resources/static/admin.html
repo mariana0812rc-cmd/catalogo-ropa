@@ -4,256 +4,217 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin — Estefania Aguirre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-  --rosa-bg:    #fce8e8;
-  --rosa-claro: #fdf0f0;
-  --rosa-borde: #f5c6c6;
-  --acento:     #b85c5c;
-  --blanco:     #ffffff;
-  --negro:      #1a1a1a;
-  --gris:       #888;
-  --verde:      #6a9e60;
-  --verde-bg:   #f2f9f0;
-  --verde-borde:#b5d5a8;
-  --header-height: 60px;
-  --gap: 1rem;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html,body { height:100%; }
-body { font-family: 'Jost', sans-serif; background:var(--rosa-bg); color:var(--negro); min-height:100vh; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.3; }
+    :root{
+      --rosa-bg:#fce8e8;--rosa-claro:#fdf0f0;--rosa-borde:#f5c6c6;
+      --acento:#b85c5c;--blanco:#ffffff;--negro:#1a1a1a;--gris:#888;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Jost',sans-serif;background:var(--rosa-bg);color:var(--negro);min-height:100vh;}
 
-/* Login */
-#login-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--rosa-bg); padding:1rem; }
-.login-box { background:var(--blanco); border:1px solid var(--rosa-borde); padding:2.25rem 1.75rem; width:100%; max-width:420px; text-align:center; border-radius:4px; box-shadow:0 6px 20px rgba(0,0,0,0.04); }
-.login-logo { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--negro); margin-bottom:6px; }
-.login-slogan { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.78rem; color:var(--gris); margin-bottom:1rem; letter-spacing:0.12em; }
-.login-eyebrow { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gris); margin-bottom:1rem; }
-.field { margin-bottom:0.9rem; text-align:left; }
-.field label { display:block; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gris); margin-bottom:6px; }
-.field input { width:100%; border:1px solid var(--rosa-borde); padding:9px 12px; font-size:0.9rem; background:var(--blanco); outline:none; transition:border-color .15s; border-radius:2px; }
-.field input:focus { border-color:var(--acento); box-shadow:0 0 0 3px rgba(184,92,92,0.06); }
-.btn-primary { width:100%; background:var(--negro); color:var(--blanco); border:none; padding:11px; font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; margin-top:0.5rem; border-radius:3px; }
-.btn-primary:hover { background:var(--acento); }
-.login-error { color:var(--acento); font-size:0.78rem; letter-spacing:0.08em; margin-top:0.8rem; display:none; }
+    /* LOGIN */
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--rosa-bg);}
+    .login-box{background:var(--blanco);border:1px solid var(--rosa-borde);padding:2.5rem 2rem;width:100%;max-width:400px;text-align:center;}
+    .login-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--negro);margin-bottom:.3rem;}
+    .login-slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--gris);margin-bottom:1.8rem;letter-spacing:.15em;}
+    .login-subtitle{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-bottom:1.8rem;}
+    .form-label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-bottom:5px;text-align:left;}
+    .form-input{width:100%;border:1px solid var(--rosa-borde);padding:10px 12px;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--negro);outline:none;margin-bottom:1rem;transition:border-color .2s;}
+    .form-input:focus{border-color:var(--acento);}
+    .btn-primary{width:100%;background:var(--negro);color:var(--blanco);border:none;padding:12px;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+    .btn-primary:hover{background:var(--acento);}
+    .login-error{color:var(--acento);font-size:.75rem;margin-top:.8rem;letter-spacing:.05em;}
 
-/* Admin layout */
-#admin-panel { display:none; min-height:100vh; }
-header {
-  background:var(--blanco);
-  border-bottom:1px solid var(--rosa-borde);
-  padding:0 1.5rem;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  height:var(--header-height);
-  position:sticky;
-  top:0;
-  z-index:150;
-}
-.header-left { display:flex; align-items:center; gap:12px; }
-.header-logo { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; }
-.header-badge { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; background:var(--rosa-claro); border:1px solid var(--rosa-borde); color:var(--acento); padding:4px 10px; border-radius:3px; }
-.header-actions { display:flex; align-items:center; gap:10px; }
-.btn-logout { background:transparent; border:1px solid var(--rosa-borde); color:var(--gris); padding:6px 12px; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; border-radius:3px; }
-.btn-logout:hover { border-color:var(--acento); color:var(--acento); }
+    /* APP */
+    .app{display:none;min-height:100vh;}
+    .app-header{background:var(--blanco);border-bottom:1px solid var(--rosa-borde);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+    .app-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--negro);}
+    .app-header-btns{display:flex;gap:.8rem;align-items:center;}
+    .btn-panel{background:transparent;border:1px solid var(--rosa-borde);color:var(--gris);padding:6px 14px;font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+    .btn-panel:hover{border-color:var(--acento);color:var(--acento);}
+    .btn-logout{background:transparent;border:1px solid var(--rosa-borde);color:var(--gris);padding:6px 14px;font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+    .btn-logout:hover{border-color:var(--acento);color:var(--acento);}
 
-/* hamburger button (hidden on desktop) */
-.btn-hamburger { display:none; background:transparent; border:1px solid var(--rosa-borde); padding:6px 10px; border-radius:4px; cursor:pointer; font-size:1rem; color:var(--gris); }
-.btn-hamburger.open { border-color:var(--acento); color:var(--acento); }
+    .app-body{display:flex;min-height:calc(100vh - 60px);}
 
-/* Main layout */
-.main { display:flex; min-height:calc(100vh - var(--header-height)); }
-.sidebar {
-  width:220px;
-  background:var(--blanco);
-  border-right:1px solid var(--rosa-borde);
-  padding:1rem 0.75rem;
-  flex-shrink:0;
-  transition:transform .28s ease, box-shadow .28s ease;
-}
-.sidebar-section { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gris); padding:0 1rem; margin:0.8rem 0 0.4rem; }
-.sidebar-item { display:flex; align-items:center; gap:8px; padding:8px 1rem; font-size:0.82rem; font-weight:300; color:var(--negro); cursor:pointer; border-left:3px solid transparent; transition:all .12s; border-radius:3px; }
-.sidebar-item:hover { background:var(--rosa-claro); }
-.sidebar-item.activo { border-left-color:var(--acento); background:var(--rosa-claro); font-weight:500; }
-.sidebar-emoji { font-size:1rem; }
+    /* SIDEBAR */
+    .sidebar{width:220px;background:var(--blanco);border-right:1px solid var(--rosa-borde);padding:1.5rem 0;flex-shrink:0;overflow-y:auto;}
+    .sidebar-section{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gris);padding:.6rem 1.2rem .3rem;font-weight:500;}
+    .sidebar-item{display:flex;align-items:center;gap:.6rem;padding:.6rem 1.2rem;font-size:.8rem;color:var(--gris);cursor:pointer;transition:all .18s;border-left:2px solid transparent;}
+    .sidebar-item:hover{color:var(--negro);background:var(--rosa-claro);}
+    .sidebar-item.activo{color:var(--acento);background:var(--rosa-claro);border-left-color:var(--acento);font-weight:500;}
+    .sidebar-emoji{font-size:1rem;}
 
-/* content */
-.content { flex:1; padding:1.6rem; overflow-y:auto; }
-.content-header { display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--rosa-borde); }
-.content-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; letter-spacing:0.02em; }
-.content-sub { font-size:0.72rem; letter-spacing:0.12em; color:var(--gris); text-transform:uppercase; margin-top:3px; }
-.btn-nuevo { background:var(--negro); color:var(--blanco); border:none; padding:9px 16px; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; border-radius:4px; }
-.btn-nuevo:hover { background:var(--acento); }
+    /* MAIN */
+    .main{flex:1;padding:2rem;overflow-y:auto;}
+    .main-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
+    .main-titulo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--negro);}
+    .main-subtitulo{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);margin-top:.2rem;}
+    .btn-add{background:var(--negro);color:var(--blanco);border:none;padding:10px 20px;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s;white-space:nowrap;}
+    .btn-add:hover{background:var(--acento);}
 
-/* table */
-.tabla-wrap { overflow-x:auto; }
-table { width:100%; border-collapse:collapse; background:var(--blanco); border:1px solid var(--rosa-borde); min-width:720px; }
-th { background:var(--rosa-claro); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gris); font-weight:500; padding:10px 12px; text-align:left; border-bottom:1px solid var(--rosa-borde); }
-td { padding:10px 12px; font-size:0.88rem; font-weight:300; border-bottom:1px solid var(--rosa-claro); vertical-align:middle; }
-tr:last-child td { border-bottom:none; }
-tr:hover td { background:var(--rosa-claro); }
-.td-nombre { font-family:'Cormorant Garamond',serif; font-size:0.98rem; font-weight:600; }
-.td-precio { font-family:'Cormorant Garamond',serif; font-size:0.95rem; }
-.pill { display:inline-block; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; padding:3px 8px; border-radius:12px; }
-.pill.si { color:var(--verde); border:1px solid var(--verde-borde); background:var(--verde-bg); }
-.pill.no { color:var(--acento); border:1px solid var(--rosa-borde); background:var(--rosa-claro); }
-.acciones { display:flex; gap:6px; }
-.btn-edit, .btn-del { background:transparent; border:1px solid var(--rosa-borde); color:var(--gris); padding:6px 10px; font-size:0.72rem; cursor:pointer; border-radius:4px; }
-.btn-edit:hover { border-color:var(--negro); color:var(--negro); }
-.btn-del:hover { background:var(--rosa-claro); border-color:var(--acento); color:var(--acento); }
-.loading-tabla { text-align:center; padding:2.4rem; color:var(--gris); font-size:0.9rem; letter-spacing:0.12em; }
+    /* PLACEHOLDER */
+    .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;color:var(--gris);}
+    .placeholder-emoji{font-size:3rem;margin-bottom:1rem;}
+    .placeholder-text{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;}
+    .placeholder-sub{font-size:.7rem;color:var(--rosa-borde);margin-top:.5rem;}
 
-/* modal, forms */
-.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:220; align-items:center; justify-content:center; padding:1rem; }
-.modal-overlay.visible { display:flex; }
-.modal { background:var(--blanco); border:1px solid var(--rosa-borde); width:640px; max-height:85vh; overflow-y:auto; padding:1.35rem; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,0.08); }
-.modal-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; margin-bottom:0.2rem; }
-.modal-sub { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gris); margin-bottom:1rem; padding-bottom:0.8rem; border-bottom:1px solid var(--rosa-borde); }
-.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.8rem; }
-.form-grid .full { grid-column:1/-1; }
-.form-field label { font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gris); margin-bottom:6px; display:block; }
-.form-field input, .form-field select { border:1px solid var(--rosa-borde); padding:8px 10px; font-size:0.9rem; outline:none; border-radius:4px; width:100%; }
-.modal-footer { display:flex; justify-content:flex-end; gap:0.8rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--rosa-borde); }
-.btn-cancelar, .btn-guardar { border-radius:4px; padding:9px 16px; font-size:0.82rem; }
-.btn-cancelar { background:transparent; border:1px solid var(--rosa-borde); color:var(--gris); }
-.btn-guardar { background:var(--negro); color:var(--blanco); border:none; }
-.btn-guardar:hover { background:var(--acento); }
+    /* TABLA */
+    .tabla-wrap{background:var(--blanco);border:1px solid var(--rosa-borde);overflow:hidden;}
+    .tabla{width:100%;border-collapse:collapse;}
+    .tabla th{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);padding:.8rem 1rem;text-align:left;border-bottom:1px solid var(--rosa-borde);font-weight:400;background:var(--rosa-claro);}
+    .tabla td{padding:.8rem 1rem;border-bottom:1px solid var(--rosa-claro);font-size:.85rem;vertical-align:middle;}
+    .tabla tr:last-child td{border-bottom:none;}
+    .tabla tr:hover td{background:var(--rosa-claro);}
+    .badge-disp{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border:1px solid;}
+    .badge-disp.si{color:#6a9e60;border-color:#b5d5a8;background:#f2f9f0;}
+    .badge-disp.no{color:var(--acento);border-color:var(--rosa-borde);background:var(--rosa-claro);}
+    .btn-edit{background:transparent;border:1px solid var(--rosa-borde);color:var(--gris);padding:4px 12px;font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .18s;margin-right:4px;}
+    .btn-edit:hover{border-color:var(--acento);color:var(--acento);}
+    .btn-del{background:transparent;border:1px solid var(--rosa-borde);color:var(--gris);padding:4px 12px;font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+    .btn-del:hover{border-color:#c0392b;color:#c0392b;}
+    .tabla-fotos{display:flex;gap:4px;align-items:center;}
+    .tabla-foto{width:44px;height:44px;object-fit:cover;border:1px solid var(--rosa-borde);}
+    .tabla-foto-count{font-size:.65rem;color:var(--gris);}
 
-/* toast */
-.toast { position:fixed; bottom:1.25rem; right:1.25rem; background:var(--negro); color:var(--blanco); padding:10px 16px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; z-index:300; opacity:0; transform:translateY(8px); transition:all .28s; pointer-events:none; border-radius:4px; }
-.toast.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
-.toast.error { background:var(--acento); }
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center;padding:1rem;}
+    .modal-overlay.visible{display:flex;}
+    .modal{background:var(--blanco);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border-radius:2px;}
+    .modal-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--rosa-borde);display:flex;align-items:center;justify-content:space-between;}
+    .modal-titulo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--negro);}
+    .modal-close{background:transparent;border:none;font-size:1.3rem;color:var(--gris);cursor:pointer;padding:2px 6px;}
+    .modal-close:hover{color:var(--acento);}
+    .modal-body{padding:1.5rem;}
+    .modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--rosa-borde);display:flex;gap:.8rem;justify-content:flex-end;}
+    .btn-cancel{background:transparent;border:1px solid var(--rosa-borde);color:var(--gris);padding:8px 20px;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;}
+    .btn-cancel:hover{border-color:var(--acento);color:var(--acento);}
+    .btn-save{background:var(--negro);color:var(--blanco);border:none;padding:8px 24px;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+    .btn-save:hover{background:var(--acento);}
 
-/* responsive: tablets and down */
-@media (max-width: 1024px) {
-  .modal { width:560px; }
-  .sidebar { width:200px; }
-  table { min-width:680px; }
-}
+    /* FORM */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-field{display:flex;flex-direction:column;gap:5px;}
+    .form-field.full{grid-column:1/-1;}
+    .form-field label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);}
+    .form-field input,.form-field select,.form-field textarea{border:1px solid var(--rosa-borde);padding:8px 10px;font-family:'Jost',sans-serif;font-size:.85rem;color:var(--negro);outline:none;width:100%;transition:border-color .2s;}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--acento);}
 
-/* responsive: phones */
-@media (max-width: 768px) {
-  header { padding:0 0.9rem; }
-  .btn-hamburger { display:inline-flex; align-items:center; justify-content:center; }
-  .header-badge { display:none; }
-  .header-actions { gap:6px; }
-  .main { display:block; }
-  .sidebar {
-    position:fixed;
-    top:var(--header-height);
-    left:0;
-    height:calc(100vh - var(--header-height));
-    width:72%;
-    max-width:320px;
-    transform:translateX(-110%);
-    box-shadow:0 18px 50px rgba(0,0,0,0.12);
-    z-index:200;
-    border-right:1px solid var(--rosa-borde);
-    padding:1rem;
-    overflow-y:auto;
-    border-radius:0 6px 6px 0;
-  }
-  .sidebar.open { transform:translateX(0); }
-  .content { padding:1rem; min-height:calc(100vh - var(--header-height)); }
-  .tabla-wrap { margin-top:0.5rem; }
-  table { min-width:560px; font-size:0.86rem; }
-  .modal { width:100%; max-width:720px; border-radius:6px; padding:1rem; margin:0 0.5rem; }
-  .form-grid { grid-template-columns:1fr; }
-  .btn-nuevo { padding:8px 12px; font-size:0.78rem; }
-}
+    /* ZONA DE IMÁGENES */
+    .img-section{grid-column:1/-1;margin-top:.5rem;}
+    .img-section-title{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-bottom:.6rem;}
 
-/* very small phones */
-@media (max-width: 420px) {
-  :root { --header-height:56px; }
-  .login-box { padding:1.5rem; }
-  .content-title { font-size:1.1rem; }
-  .sidebar { width:78%; max-width:280px; }
-  .modal { padding:0.9rem; }
-  .form-field input, .form-field select { padding:8px; font-size:0.92rem; }
-  .btn-logout { padding:6px 8px; font-size:0.72rem; }
-}
+    /* imágenes actuales */
+    .fotos-actuales{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem;}
+    .foto-item{position:relative;width:80px;height:80px;}
+    .foto-item img{width:100%;height:100%;object-fit:cover;border:1px solid var(--rosa-borde);display:block;}
+    .foto-item .foto-del{position:absolute;top:-6px;right:-6px;background:var(--acento);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+    .foto-item .foto-principal{position:absolute;bottom:2px;left:2px;background:rgba(0,0,0,.55);color:#fff;font-size:.45rem;letter-spacing:.05em;padding:1px 4px;text-transform:uppercase;}
+
+    /* zona drop */
+    .drop-zone{border:2px dashed var(--rosa-borde);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s;background:var(--rosa-claro);}
+    .drop-zone:hover,.drop-zone.drag-over{border-color:var(--acento);}
+    .drop-zone p{font-size:.72rem;color:var(--gris);letter-spacing:.1em;}
+    .drop-zone span{font-size:.65rem;color:var(--acento);display:block;margin-top:.3rem;}
+    .drop-input{display:none;}
+
+    /* preview nuevas */
+    .nuevas-preview{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem;}
+    .nueva-item{position:relative;width:70px;height:70px;}
+    .nueva-item img{width:100%;height:100%;object-fit:cover;border:1px solid var(--rosa-borde);display:block;}
+    .nueva-item .nueva-del{position:absolute;top:-5px;right:-5px;background:var(--acento);color:#fff;border:none;border-radius:50%;width:16px;height:16px;font-size:.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+    .upload-progress{font-size:.7rem;color:var(--gris);margin-top:.4rem;letter-spacing:.05em;}
+    .toast{position:fixed;bottom:2rem;right:2rem;background:var(--negro);color:#fff;padding:.7rem 1.2rem;font-size:.75rem;letter-spacing:.1em;border-radius:2px;z-index:999;opacity:0;transition:opacity .3s;}
+    .toast.show{opacity:1;}
+
+    @media(max-width:768px){
+      .sidebar{display:none;}
+      .main{padding:1.2rem;}
+      .form-grid{grid-template-columns:1fr;}
+      .form-field.full{grid-column:1;}
+      .app-header{padding:0 1rem;}
+    }
   </style>
 </head>
 <body>
 
-<div id="login-screen">
+<!-- LOGIN -->
+<div class="login-wrap" id="login-wrap">
   <div class="login-box">
     <div class="login-logo">Estefania Aguirre</div>
     <div class="login-slogan">mi estilo</div>
-    <div class="login-eyebrow">Panel de administración</div>
-    <div class="field">
-      <label>Usuario</label>
-      <input type="text" id="inp-user" placeholder="usuario"/>
-    </div>
-    <div class="field">
-      <label>Contraseña</label>
-      <input type="password" id="inp-pass" placeholder="••••••••"/>
-    </div>
-    <button class="btn-primary" id="btn-entrar">Entrar</button>
-    <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
+    <div class="login-subtitle">Panel de Administración</div>
+    <label class="form-label">Usuario</label>
+    <input class="form-input" id="inp-user" type="text" placeholder="usuario" autocomplete="username"/>
+    <label class="form-label">Contraseña</label>
+    <input class="form-input" id="inp-pass" type="password" placeholder="••••••••" autocomplete="current-password"/>
+    <button class="btn-primary" id="btn-login">Entrar</button>
+    <div class="login-error" id="login-error"></div>
   </div>
 </div>
 
-<div id="admin-panel">
-  <header>
-    <div class="header-logo">Estefania Aguirre</div>
-    <div class="header-badge">Panel Admin</div>
-    <button class="btn-logout" id="btn-logout">Cerrar sesión</button>
-  </header>
-  <div class="main">
-    <div class="sidebar">
+<!-- APP -->
+<div class="app" id="app">
+  <div class="app-header">
+    <div class="app-logo">Estefania Aguirre</div>
+    <div class="app-header-btns">
+      <button class="btn-panel" onclick="window.open('catalogo.html','_blank')">Panel Admin</button>
+      <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+    </div>
+  </div>
+  <div class="app-body">
+    <div class="sidebar" id="sidebar">
       <div class="sidebar-section">Superiores</div>
-      <div class="sidebar-item" data-seccion="camisas" data-titulo="Camisas"><span class="sidebar-emoji">👔</span> Camisas</div>
-      <div class="sidebar-item" data-seccion="blusas" data-titulo="Blusas"><span class="sidebar-emoji">🌸</span> Blusas</div>
-      <div class="sidebar-item" data-seccion="bodys" data-titulo="Bodies"><span class="sidebar-emoji">👙</span> Bodies</div>
-      <div class="sidebar-item" data-seccion="tops" data-titulo="Tops"><span class="sidebar-emoji">👙</span> Tops</div>
-      <div class="sidebar-item" data-seccion="corsets" data-titulo="Corsets"><span class="sidebar-emoji">🎀</span> Corsets</div>
-      <div class="sidebar-item" data-seccion="playeras" data-titulo="Playeras"><span class="sidebar-emoji">👕</span> Playeras</div>
-      <div class="sidebar-item" data-seccion="sueteres" data-titulo="Suéteres"><span class="sidebar-emoji">🧶</span> Suéteres</div>
-      <div class="sidebar-item" data-seccion="chamarras" data-titulo="Chamarras"><span class="sidebar-emoji">🥼</span> Chamarras</div>
-      <div class="sidebar-item" data-seccion="abrigos" data-titulo="Abrigos"><span class="sidebar-emoji">🧣</span> Abrigos</div>
-      <div class="sidebar-item" data-seccion="blazers" data-titulo="Blazers"><span class="sidebar-emoji">🥼</span> Blazers</div>
+      <div class="sidebar-item" data-seccion="camisas"   data-titulo="Camisas"><span class="sidebar-emoji">👔</span> Camisas</div>
+      <div class="sidebar-item" data-seccion="blusas"    data-titulo="Blusas"><span class="sidebar-emoji">🌸</span> Blusas</div>
+      <div class="sidebar-item" data-seccion="bodys"     data-titulo="Bodies"><span class="sidebar-emoji">👙</span> Bodies</div>
+      <div class="sidebar-item" data-seccion="tops"      data-titulo="Tops"><span class="sidebar-emoji">👗</span> Tops</div>
+      <div class="sidebar-item" data-seccion="corsets"   data-titulo="Corsets"><span class="sidebar-emoji">🎀</span> Corsets</div>
+      <div class="sidebar-item" data-seccion="playeras"  data-titulo="Playeras"><span class="sidebar-emoji">👕</span> Playeras</div>
+      <div class="sidebar-item" data-seccion="sueteres"  data-titulo="Suéteres"><span class="sidebar-emoji">🧶</span> Suéteres</div>
+      <div class="sidebar-item" data-seccion="chamarras" data-titulo="Chamarras"><span class="sidebar-emoji">🧥</span> Chamarras</div>
+      <div class="sidebar-item" data-seccion="abrigos"   data-titulo="Abrigos"><span class="sidebar-emoji">🧣</span> Abrigos</div>
+      <div class="sidebar-item" data-seccion="blazers"   data-titulo="Blazers"><span class="sidebar-emoji">🥼</span> Blazers</div>
       <div class="sidebar-section">Inferiores</div>
-      <div class="sidebar-item" data-seccion="jeans" data-titulo="Jeans"><span class="sidebar-emoji">👖</span> Jeans</div>
-      <div class="sidebar-item" data-seccion="leggings" data-titulo="Leggings"><span class="sidebar-emoji">🖤</span> Leggings</div>
-      <div class="sidebar-item" data-seccion="pantalones" data-titulo="Pantalones"><span class="sidebar-emoji">👗</span> Pantalones</div>
-      <div class="sidebar-item" data-seccion="shorts" data-titulo="Shorts"><span class="sidebar-emoji">🩳</span> Shorts</div>
-      <div class="sidebar-section">Faldas</div>
+      <div class="sidebar-item" data-seccion="jeans"          data-titulo="Jeans"><span class="sidebar-emoji">👖</span> Jeans</div>
+      <div class="sidebar-item" data-seccion="leggings"       data-titulo="Leggings"><span class="sidebar-emoji">🖤</span> Leggings</div>
+      <div class="sidebar-item" data-seccion="pantalones"     data-titulo="Pantalones"><span class="sidebar-emoji">👗</span> Pantalones</div>
+      <div class="sidebar-item" data-seccion="shorts"         data-titulo="Shorts"><span class="sidebar-emoji">🩳</span> Shorts</div>
       <div class="sidebar-item" data-seccion="faldas-plisadas" data-titulo="Faldas Plisadas"><span class="sidebar-emoji">🌷</span> Plisadas</div>
-      <div class="sidebar-item" data-seccion="faldas-lapiz" data-titulo="Faldas Lápiz"><span class="sidebar-emoji">✏️</span> Lápiz</div>
-      <div class="sidebar-item" data-seccion="faldas-mini" data-titulo="Faldas Mini"><span class="sidebar-emoji">💕</span> Mini</div>
+      <div class="sidebar-item" data-seccion="faldas-lapiz"   data-titulo="Faldas Lápiz"><span class="sidebar-emoji">✏️</span> Lápiz</div>
+      <div class="sidebar-item" data-seccion="faldas-mini"    data-titulo="Faldas Mini"><span class="sidebar-emoji">💕</span> Mini</div>
       <div class="sidebar-section">Cuerpo Completo</div>
-      <div class="sidebar-item" data-seccion="vestidos-casual" data-titulo="Vestidos Casual"><span class="sidebar-emoji">🌼</span> Casual</div>
-      <div class="sidebar-item" data-seccion="vestidos-formal" data-titulo="Vestidos Formal"><span class="sidebar-emoji">✨</span> Formal</div>
-      <div class="sidebar-item" data-seccion="vestidos-playa" data-titulo="Vestidos Playa"><span class="sidebar-emoji">🌊</span> Playa</div>
-      <div class="sidebar-item" data-seccion="palazzos" data-titulo="Palazzos"><span class="sidebar-emoji">👘</span> Palazzos</div>
-      <div class="sidebar-item" data-seccion="jumpers" data-titulo="Jumpers"><span class="sidebar-emoji">🩱</span> Jumpers</div>
+      <div class="sidebar-item" data-seccion="vestidos-casual" data-titulo="Vestidos Casual"><span class="sidebar-emoji">🌼</span> V. Casual</div>
+      <div class="sidebar-item" data-seccion="vestidos-formal" data-titulo="Vestidos Formal"><span class="sidebar-emoji">✨</span> V. Formal</div>
+      <div class="sidebar-item" data-seccion="vestidos-playa"  data-titulo="Vestidos Playa"><span class="sidebar-emoji">🌊</span> V. Playa</div>
+      <div class="sidebar-item" data-seccion="palazzos"  data-titulo="Palazzos"><span class="sidebar-emoji">👘</span> Palazzos</div>
+      <div class="sidebar-item" data-seccion="jumpers"   data-titulo="Jumpers"><span class="sidebar-emoji">🩱</span> Jumpers</div>
     </div>
-    <div class="content">
-      <div class="content-header">
-        <div>
-          <div class="content-title" id="seccion-titulo">Selecciona una categoría</div>
-          <div class="content-sub" id="seccion-sub">← Elige del menú lateral</div>
-        </div>
-        <button class="btn-nuevo" id="btn-nuevo" style="display:none">+ Añadir prenda</button>
-      </div>
-      <div class="tabla-wrap" id="tabla-wrap">
-        <div class="loading-tabla">Selecciona una categoría para comenzar</div>
+    <div class="main" id="main">
+      <div class="placeholder">
+        <div class="placeholder-emoji">👗</div>
+        <div class="placeholder-text">Selecciona una categoría</div>
+        <div class="placeholder-sub">← Elige del menú lateral</div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <div class="modal-title" id="modal-titulo">Nueva prenda</div>
-    <div class="modal-sub" id="modal-sub">Completa los campos</div>
-    <div class="form-grid" id="form-campos"></div>
+    <div class="modal-header">
+      <div class="modal-titulo" id="modal-titulo">Nueva prenda</div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid" id="form-campos"></div>
+    </div>
     <div class="modal-footer">
-      <button class="btn-cancelar" id="btn-cancelar">Cancelar</button>
-      <button class="btn-guardar" id="btn-guardar">Guardar</button>
+      <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+      <button class="btn-save" id="btn-save">Guardar</button>
     </div>
   </div>
 </div>
@@ -261,317 +222,356 @@ tr:hover td { background:var(--rosa-claro); }
 <div class="toast" id="toast"></div>
 
 <script>
-  const BASE = 'https://catalogo-ropa-production.up.railway.app';
-   let authHeader = '';
-   let seccionActual = '';
-   let editandoId = null;
+const BASE = 'https://catalogo-ropa-production.up.railway.app';
 
-   const CAMPOS = {
-     camisas:           ['nombre','marca','precio','disponible','talla','color','manga','imagenUrl'],
-     blusas:            ['nombre','marca','precio','disponible','talla','color','escote','material','imagenUrl'],
-     bodys: ['nombre','marca','precio','disponible','talla','color','escote','material','imagenUrl'],
-     tops:              ['nombre','marca','precio','disponible','talla','color','estilo','imagenUrl'],
-     corsets:           ['nombre','marca','precio','disponible','talla','color','material','cierre','imagenUrl'],
-     playeras:          ['nombre','marca','precio','disponible','talla','color','manga','estampado','imagenUrl'],
-     sueteres:          ['nombre','marca','precio','disponible','talla','color','material','cuello','grosor','imagenUrl'],
-     chamarras:         ['nombre','marca','precio','disponible','talla','color','material','cierre','capucha','imagenUrl'],
+// Campos por categoría
+const CAMPOS = {
+  'camisas':          ['nombre','marca','precio','disponible','talla','color','material','manga','cuello'],
+  'blusas':           ['nombre','marca','precio','disponible','talla','color','material','manga','escote'],
+  'bodys':            ['nombre','marca','precio','disponible','talla','color','material','manga'],
+  'tops':             ['nombre','marca','precio','disponible','talla','color','material','manga','escote'],
+  'corsets':          ['nombre','marca','precio','disponible','talla','color','material'],
+  'playeras':         ['nombre','marca','precio','disponible','talla','color','material','manga'],
+  'sueteres':         ['nombre','marca','precio','disponible','talla','color','material'],
+  'chamarras':        ['nombre','marca','precio','disponible','talla','color','material','cierre'],
+  'abrigos':          ['nombre','marca','precio','disponible','talla','color','material','cierre','capucha'],
+  'blazers':          ['nombre','marca','precio','disponible','talla','color','material','largo'],
+  'jeans':            ['nombre','marca','precio','disponible','talla','color','corte'],
+  'leggings':         ['nombre','marca','precio','disponible','talla','color','material'],
+  'pantalones':       ['nombre','marca','precio','disponible','talla','color','corte','material'],
+  'shorts':           ['nombre','marca','precio','disponible','talla','color','material'],
+  'faldas-plisadas':  ['nombre','marca','precio','disponible','talla','color','largo','material'],
+  'faldas-lapiz':     ['nombre','marca','precio','disponible','talla','color','largo','material'],
+  'faldas-mini':      ['nombre','marca','precio','disponible','talla','color','material'],
+  'vestidos-casual':  ['nombre','marca','precio','disponible','talla','color','largo','material','manga'],
+  'vestidos-formal':  ['nombre','marca','precio','disponible','talla','color','largo','material','manga'],
+  'vestidos-playa':   ['nombre','marca','precio','disponible','talla','color','largo','material','tirantes'],
+  'palazzos':         ['nombre','marca','precio','disponible','talla','color','largo','material','manga'],
+  'jumpers':          ['nombre','marca','precio','disponible','talla','color','largo','material','forma']
+};
 
-     jeans:             ['nombre','marca','precio','disponible','talla','color','corte','lavado','imagenUrl'],
-     leggings:          ['nombre','marca','precio','disponible','talla','color','corte','material','imagenUrl'],
-     pantalones:        ['nombre','marca','precio','disponible','talla','color','corte','material','largo','imagenUrl'],
-     shorts:            ['nombre','marca','precio','disponible','talla','color','corte','material','largo','imagenUrl'],
-     'faldas-plisadas': ['nombre','marca','precio','disponible','talla','color','largo','material','numeroDePliegues','imagenUrl'],
-     'faldas-lapiz':    ['nombre','marca','precio','disponible','talla','color','largo','material','abertura','imagenUrl'],
-     'faldas-mini':     ['nombre','marca','precio','disponible','talla','color','largo','material','estilo','imagenUrl'],
-     'vestidos-casual': ['nombre','marca','precio','disponible','talla','color','largo','estampado','manga','imagenUrl'],
-     'vestidos-formal': ['nombre','marca','precio','disponible','talla','color','largo','escote','tren','imagenUrl'],
-     'vestidos-playa':  ['nombre','marca','precio','disponible','talla','color','largo','material','tirantes','imagenUrl']
-     ,
-'abrigos':  ['nombre','marca','precio','disponible','talla','color','material','cierre','capucha','imagenUrl'],
-'blazers':  ['nombre','marca','precio','disponible','talla','color','material','largo','imagenUrl'],
-'palazzos': ['nombre','marca','precio','disponible','talla','color','largo','material','manga','imagenUrl'],
-'jumpers':  ['nombre','marca','precio','disponible','talla','color','largo','material','forma','imagenUrl']
-   };
+const OPCIONES = {
+  marca:      ['Estefanía Aguirre','Estefanía Curvy'],
+  talla:      ['XS','S','M','L','XL','Unitalla'],
+  color:      ['Negro','Blanco','Beige','Rosa','Rojo','Azul','Azul marino','Verde','Morado','Café','Gris','Multicolor'],
+  material:   ['Algodón','Lino','Seda','Tela','Mezclilla','Licra','Nylon','Lana','Cuero','Satín','Encaje','Tul'],
+  manga:      ['Sin manga','Corta','3/4','Larga','Tirantes'],
+  corte:      ['Recto','Skinny','Wide leg','Mom','Flare','Palazzo','Cargo'],
+  largo:      ['Corta','Media','Larga','Maxi'],
+  escote:     ['Redondo','V','Cuadrado','Sin escote','Off shoulder','Halter'],
+  cuello:     ['Redondo','V','Cuadrado','Cuello alto','Sin cuello'],
+  cierre:     ['Cremallera','Botones','Ninguno'],
+  capucha:    ['Con capucha','Sin capucha'],
+  tirantes:   ['Con tirantes','Sin tirantes','Halter'],
+  forma:      ['Enterizo','Separado','Con falda','Pantalón'],
+  disponible: ['true','false']
+};
 
-   const BOOL_CAMPOS = ['disponible','abertura','tren'];
-   const NUM_CAMPOS  = ['precio','numeroDePliegues'];
+let seccionActual = '';
+let editandoId    = null;
+let credenciales  = '';
 
-   async function iniciarSesion() {
-     const user = document.getElementById('inp-user').value.trim();
-     const pass = document.getElementById('inp-pass').value.trim();
-     const errEl = document.getElementById('login-error');
-     errEl.style.display = 'none';
-     if (!user || !pass) return;
+// fotos a eliminar y nuevas a subir
+let fotosEliminar  = [];  // urls a quitar de imagenes[]
+let nuevosArchivos = [];  // File[] pendientes de subir
 
-     const header = 'Basic ' + btoa(user + ':' + pass);
-     try {
-       const res = await fetch(BASE + '/api/admin/check', {
-         headers: { 'Authorization': header }
-       });
-       if (res.ok) {
-         authHeader = header;
-         document.getElementById('login-screen').style.display = 'none';
-         document.getElementById('admin-panel').style.display = 'block';
-       } else {
-         errEl.textContent = 'Usuario o contraseña incorrectos';
-         errEl.style.display = 'block';
-       }
-     } catch (e) {
-       errEl.textContent = 'No se pudo conectar al servidor';
-       errEl.style.display = 'block';
-     }
-   }
-
-   function cerrarSesion() {
-     authHeader = '';
-     document.getElementById('login-screen').style.display = 'flex';
-     document.getElementById('admin-panel').style.display = 'none';
-     document.getElementById('inp-pass').value = '';
-   }
-
-   async function cargarSeccion(seccion, titulo) {
-     seccionActual = seccion;
-     document.getElementById('seccion-titulo').textContent = titulo;
-     document.getElementById('seccion-sub').textContent = 'Gestiona los artículos de ' + titulo.toLowerCase();
-     document.getElementById('btn-nuevo').style.display = 'inline-block';
-     document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('activo'));
-     document.querySelector('[data-seccion="' + seccion + '"]').classList.add('activo');
-     document.getElementById('tabla-wrap').innerHTML = '<div class="loading-tabla">Cargando…</div>';
-     const res = await fetch(BASE + '/api/' + seccion, { headers: { 'Authorization': authHeader } });
-     const items = await res.json();
-     renderTabla(items);
-   }
-
-   function renderTabla(items) {
-   window._items = [];
-     if (items.length === 0) {
-       document.getElementById('tabla-wrap').innerHTML = '<div class="loading-tabla">No hay artículos — añade el primero</div>';
-       return;
-     }
-     const cols = ['nombre','marca','precio','talla','color','disponible'];
-     const thead = cols.map(c => '<th>' + c + '</th>').join('') + '<th>Imagen</th><th>Acciones</th>';
-     const tbody = items.map(function(item) {
-       const celdas = cols.map(function(c) {
-         const v = item[c];
-         if (c === 'disponible') return '<td><span class="pill ' + (v ? 'si' : 'no') + '">' + (v ? 'Disponible' : 'Agotado') + '</span></td>';
-         if (c === 'precio') return '<td class="td-precio">$' + Number(v).toLocaleString('es-MX', {minimumFractionDigits:2}) + '</td>';
-         if (c === 'nombre') return '<td class="td-nombre">' + (v || '') + '</td>';
-         return '<td>' + (v || '—') + '</td>';
-       }).join('');
-       const imgCell = item.imagenUrl
-         ? '<td><img src="' + item.imagenUrl + '" style="width:48px;height:48px;object-fit:cover;border:1px solid var(--rosa-borde)"/></td>'
-         : '<td style="color:var(--gris);font-size:0.7rem">Sin imagen</td>';
-   const idx = window._items ? window._items.length : 0;
-   if (!window._items) window._items = [];
-   window._items.push(item);
-   return '<tr>' + celdas + imgCell + '<td><div class="acciones"><button class="btn-edit" onclick="abrirModalEditar(' + idx + ')">Editar</button><button class="btn-del" onclick="eliminarItem(' + item.id + ')">Eliminar</button></div></td></tr>';
-     }).join('');
-     document.getElementById('tabla-wrap').innerHTML = '<table><thead><tr>' + thead + '</tr></thead><tbody>' + tbody + '</tbody></table>';
-   }
-
-   function abrirModalNuevo() {
-     editandoId = null;
-     document.getElementById('modal-titulo').textContent = 'Nueva prenda';
-     document.getElementById('modal-sub').textContent = seccionActual;
-     generarCampos({});
-     document.getElementById('modal-overlay').classList.add('visible');
-   }
-   function abrirModalEditar(idx) {
-     const item = window._items[idx];
-     editandoId = item.id;
-     document.getElementById('modal-titulo').textContent = 'Editar prenda';
-     document.getElementById('modal-sub').textContent = item.nombre;
-     generarCampos(item);
-     document.getElementById('modal-overlay').classList.add('visible');
-   }
-
-   function cerrarModal() {
-     document.getElementById('modal-overlay').classList.remove('visible');
-   }
-
-   function generarCampos(data) {
-     const campos = CAMPOS[seccionActual] || ['nombre','marca','precio','disponible'];
-     const cont = document.getElementById('form-campos');
-     cont.innerHTML = campos.map(function(c) {
-       const val = data[c] !== undefined ? data[c] : '';
-       const full = ['nombre','marca','imagenUrl'].includes(c) ? ' full' : '';
-       if (c === 'imagenUrl') {
-         return '<div class="form-field full"><label>Imagen de la prenda</label><div style="display:flex;gap:10px;align-items:center;"><input type="file" id="campo-archivo" accept="image/*" onchange="previsualizarImagen(this)" style="font-size:0.78rem;border:1px solid var(--rosa-borde);padding:6px;flex:1"/><img id="preview-img" src="' + (val || '') + '" style="width:60px;height:60px;object-fit:cover;border:1px solid var(--rosa-borde);display:' + (val ? 'block' : 'none') + '"/></div><input type="hidden" id="campo-imagenUrl" value="' + (val || '') + '"/></div>';
-       }
-       if (c === 'marca') {
-  return '<div class="form-field' + full + '"><label>Marca</label><select id="campo-marca" style="border:1px solid var(--rosa-borde);padding:8px 10px;font-family:\'Jost\',sans-serif;font-size:0.82rem;width:100%;outline:none;"><option value="Estefanía Aguirre"' + (val === "Estefanía Aguirre" ? " selected" : "") + '>Estefanía Aguirre</option><option value="Estefanía Curvy"' + (val === "Estefanía Curvy" ? " selected" : "") + '>Estefanía Curvy</option></select></div>';
-}
-       if (BOOL_CAMPOS.includes(c)) {
-         return '<div class="form-field' + full + '"><label>' + c + '</label><select id="campo-' + c + '"><option value="true"' + (val === true ? ' selected' : '') + '>Sí</option><option value="false"' + (val === false ? ' selected' : '') + '>No</option></select></div>';
-       }
-       return '<div class="form-field' + full + '"><label>' + c + '</label><input type="' + (NUM_CAMPOS.includes(c) ? 'number' : 'text') + '" id="campo-' + c + '" value="' + (val || '') + '" placeholder="' + c + '"/></div>';
-     }).join('');
-   }
-
-   function previsualizarImagen(input) {
-     const file = input.files[0];
-     if (!file) return;
-     const preview = document.getElementById('preview-img');
-     preview.src = URL.createObjectURL(file);
-     preview.style.display = 'block';
-   }
-
-   async function subirImagenSiHay() {
-     const fileInput = document.getElementById('campo-archivo');
-     if (!fileInput || !fileInput.files[0]) return null;
-     const formData = new FormData();
-     formData.append('archivo', fileInput.files[0]);
-     const res = await fetch(BASE + '/api/imagenes/subir', {
-       method: 'POST',
-       headers: { 'Authorization': authHeader },
-       body: formData
-     });
-     if (res.ok) {
-       const data = await res.json();
-       return data.url;
-     }
-     return null;
-   }
-
-   async function guardarPrenda() {
-     const campos = CAMPOS[seccionActual] || [];
-     const body = {};
-     const nuevaUrl = await subirImagenSiHay();
-     if (nuevaUrl) body['imagenUrl'] = nuevaUrl;
-     for (let i = 0; i < campos.length; i++) {
-       const c = campos[i];
-       if (c === 'imagenUrl') continue;
-       const el = document.getElementById('campo-' + c);
-       if (!el) continue;
-       let v = el.value;
-       if (BOOL_CAMPOS.includes(c)) v = (v === 'true');
-       else if (NUM_CAMPOS.includes(c)) v = Number(v);
-       body[c] = v;
-     }
-     if (!body['imagenUrl']) {
-       const hidden = document.getElementById('campo-imagenUrl');
-       if (hidden && hidden.value) body['imagenUrl'] = hidden.value;
-     }
-     const url = BASE + '/api/' + seccionActual + (editandoId ? '/' + editandoId : '');
-     const method = editandoId ? 'PUT' : 'POST';
-     const res = await fetch(url, {
-       method: method,
-       headers: { 'Authorization': authHeader, 'Content-Type': 'application/json' },
-       body: JSON.stringify(body)
-     });
-     if (res.ok) {
-       cerrarModal();
-       mostrarToast(editandoId ? 'Prenda actualizada' : 'Prenda añadida');
-       recargarTabla();
-     } else {
-       mostrarToast('Error al guardar', true);
-     }
-   }
-
-   async function eliminarItem(id) {
-     if (!confirm('¿Eliminar esta prenda?')) return;
-     const res = await fetch(BASE + '/api/' + seccionActual + '/' + id, {
-       method: 'DELETE',
-       headers: { 'Authorization': authHeader }
-     });
-     if (res.ok) {
-       mostrarToast('Prenda eliminada');
-       recargarTabla();
-     } else {
-       mostrarToast('Error al eliminar', true);
-     }
-   }
-
-   async function recargarTabla() {
-     const res = await fetch(BASE + '/api/' + seccionActual, { headers: { 'Authorization': authHeader } });
-     const items = await res.json();
-     renderTabla(items);
-   }
-
-   function mostrarToast(msg, error) {
-     const t = document.getElementById('toast');
-     t.textContent = msg;
-     t.className = 'toast visible' + (error ? ' error' : '');
-     setTimeout(function() { t.className = 'toast'; }, 2800);
-   }
-
-   document.getElementById('btn-entrar').addEventListener('click', iniciarSesion);
-   document.getElementById('inp-pass').addEventListener('keydown', function(e) { if (e.key === 'Enter') iniciarSesion(); });
-   document.getElementById('btn-logout').addEventListener('click', cerrarSesion);
-   document.getElementById('btn-nuevo').addEventListener('click', abrirModalNuevo);
-   document.getElementById('btn-guardar').addEventListener('click', guardarPrenda);
-   document.getElementById('btn-cancelar').addEventListener('click', cerrarModal);
-   document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target === this) cerrarModal(); });
-   document.querySelectorAll('.sidebar-item').forEach(function(el) {
-     el.addEventListener('click', function() {
-       cargarSeccion(this.dataset.seccion, this.dataset.titulo);
-     });
-   });
-
-  // --- Responsive helpers: actualizar --header-height y crear hamburger para sidebar (no requiere editar el HTML) ---
-
-function actualizarHeaderHeightVar() {
-  var header = document.querySelector('header');
-  if (!header) return;
-  var h = header.offsetHeight || 60;
-  document.documentElement.style.setProperty('--header-height', h + 'px');
-}
-window.addEventListener('load', actualizarHeaderHeightVar);
-window.addEventListener('resize', function() {
-  clearTimeout(window.__resizeTimeout);
-  window.__resizeTimeout = setTimeout(actualizarHeaderHeightVar, 120);
-});
-actualizarHeaderHeightVar();
-
-// Crear botón hamburguesa dinámicamente (si no existe) y control de apertura del sidebar en pantallas pequeñas
-(function crearHamburgerSiHaceFalta() {
-  var header = document.querySelector('header');
-  if (!header) return;
-  // Si ya existe, salir
-  if (header.querySelector('.btn-hamburger')) return;
-  var btn = document.createElement('button');
-  btn.className = 'btn-hamburger';
-  btn.type = 'button';
-  btn.setAttribute('aria-label', 'Abrir menú');
-  btn.innerHTML = '☰'; // icono simple
-  // insertamos a la izquierda (antes del logout)
-  var logout = header.querySelector('.btn-logout');
-  if (logout) header.insertBefore(btn, logout);
-  else header.appendChild(btn);
-
-  var sidebar = document.querySelector('.sidebar');
-  if (!sidebar) return;
-
-  function toggleSidebar() {
-    var open = sidebar.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    // prevenir scroll de fondo cuando abierto
-    document.documentElement.style.overflow = open ? 'hidden' : '';
-    document.body.style.overflow = open ? 'hidden' : '';
+// ── LOGIN ──
+document.getElementById('btn-login').onclick = async function(){
+  var u = document.getElementById('inp-user').value.trim();
+  var p = document.getElementById('inp-pass').value;
+  if(!u||!p){ document.getElementById('login-error').textContent='Completa los campos.'; return; }
+  credenciales = btoa(u+':'+p);
+  var r = await fetch(BASE+'/api/admin/check',{headers:{Authorization:'Basic '+credenciales}});
+  if(r.ok){
+    document.getElementById('login-wrap').style.display='none';
+    document.getElementById('app').style.display='flex';
+  } else {
+    document.getElementById('login-error').textContent='Usuario o contraseña incorrectos.';
+    credenciales='';
   }
-  btn.addEventListener('click', toggleSidebar);
+};
+document.getElementById('inp-pass').onkeydown = function(e){ if(e.key==='Enter') document.getElementById('btn-login').click(); };
+document.getElementById('btn-logout').onclick = function(){
+  credenciales='';
+  document.getElementById('login-wrap').style.display='flex';
+  document.getElementById('app').style.display='none';
+};
 
-  // cerrar sidebar al hacer click fuera (en mobile)
-  document.addEventListener('click', function(e) {
-    if (!sidebar.classList.contains('open')) return;
-    if (sidebar.contains(e.target) || btn.contains(e.target)) return;
-    // clic fuera -> cerrar
-    sidebar.classList.remove('open');
-    btn.classList.remove('open');
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
+// ── SIDEBAR ──
+document.getElementById('sidebar').querySelectorAll('.sidebar-item').forEach(function(item){
+  item.onclick = function(){
+    document.querySelectorAll('.sidebar-item').forEach(function(i){i.classList.remove('activo');});
+    item.classList.add('activo');
+    seccionActual = item.dataset.seccion;
+    cargarSeccion(seccionActual, item.dataset.titulo);
+  };
+});
+
+async function cargarSeccion(sec, titulo){
+  var r = await fetch(BASE+'/api/'+sec, {headers:{Authorization:'Basic '+credenciales}});
+  var items = await r.json();
+  var main = document.getElementById('main');
+  main.innerHTML =
+    '<div class="main-header">'
+    +'<div><div class="main-titulo">'+titulo+'</div><div class="main-subtitulo">Gestiona los artículos de '+titulo.toLowerCase()+'</div></div>'
+    +'<button class="btn-add" id="btn-add-prenda">+ Añadir prenda</button>'
+    +'</div>'
+    +'<div class="tabla-wrap"><table class="tabla">'
+    +'<thead><tr><th>Nombre</th><th>Marca</th><th>Precio</th><th>Talla</th><th>Color</th><th>Disponible</th><th>Imágenes</th><th>Acciones</th></tr></thead>'
+    +'<tbody id="tabla-body"></tbody></table></div>';
+  document.getElementById('btn-add-prenda').onclick = function(){ abrirModal(null); };
+  var tbody = document.getElementById('tabla-body');
+  if(!items.length){
+    tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--gris);padding:2rem;font-size:.8rem;">Sin prendas en esta categoría</td></tr>';
+    return;
+  }
+  items.forEach(function(p){
+    var fotos = getFotosAdmin(p);
+    var fotosHTML = fotos.length
+      ? '<div class="tabla-fotos">'
+        + fotos.slice(0,3).map(function(u){ return '<img class="tabla-foto" src="'+u+'" alt="foto"/>'; }).join('')
+        + (fotos.length>3?'<span class="tabla-foto-count">+' + (fotos.length-3) + '</span>':'')
+        +'</div>'
+      : '<span style="font-size:.7rem;color:var(--gris);">Sin imagen</span>';
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><strong>'+p.nombre+'</strong></td>'
+      +'<td>'+p.marca+'</td>'
+      +'<td>$'+Number(p.precio).toLocaleString('es-MX',{minimumFractionDigits:2})+'</td>'
+      +'<td>'+(p.talla||'—')+'</td>'
+      +'<td>'+(p.color||'—')+'</td>'
+      +'<td><span class="badge-disp '+(p.disponible?'si':'no')+'">'+(p.disponible?'Disponible':'Agotado')+'</span></td>'
+      +'<td>'+fotosHTML+'</td>'
+      +'<td>'
+      +'<button class="btn-edit">Editar</button>'
+      +'<button class="btn-del">Eliminar</button>'
+      +'</td>';
+    tr.querySelector('.btn-edit').onclick = function(){ abrirModal(p); };
+    tr.querySelector('.btn-del').onclick  = function(){ eliminar(p.id); };
+    tbody.appendChild(tr);
   });
+}
 
-  // cerrar con ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-      sidebar.classList.remove('open');
-      btn.classList.remove('open');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
+function getFotosAdmin(p){
+  var imgs=[];
+  if(p.imagenUrl) imgs.push(p.imagenUrl);
+  if(p.imagenes&&p.imagenes.length) p.imagenes.forEach(function(u){ if(u&&imgs.indexOf(u)===-1) imgs.push(u); });
+  return imgs;
+}
+
+// ── MODAL ──
+function abrirModal(p){
+  editandoId    = p ? p.id : null;
+  fotosEliminar  = [];
+  nuevosArchivos = [];
+  document.getElementById('modal-titulo').textContent = p ? 'Editar prenda' : 'Nueva prenda';
+  var campos = CAMPOS[seccionActual] || ['nombre','marca','precio','disponible'];
+  var html = '';
+  campos.forEach(function(c){
+    var val = p ? (p[c] !== undefined ? p[c] : '') : '';
+    var full = (c==='nombre') ? ' full' : '';
+    if(c==='disponible'){
+      html += '<div class="form-field'+full+'"><label>Disponible</label>'
+        +'<select id="campo-'+c+'">'
+        +'<option value="true"'+(String(val)==='true'?' selected':'')+'>Sí</option>'
+        +'<option value="false"'+(String(val)==='false'?' selected':'')+'>No</option>'
+        +'</select></div>';
+    } else if(c==='marca'){
+      html += '<div class="form-field'+full+'"><label>Marca</label>'
+        +'<select id="campo-'+c+'">'
+        +OPCIONES.marca.map(function(o){ return '<option value="'+o+'"'+(val===o?' selected':'')+'>'+o+'</option>'; }).join('')
+        +'</select></div>';
+    } else if(c==='precio'){
+      html += '<div class="form-field'+full+'"><label>Precio</label>'
+        +'<input id="campo-'+c+'" type="number" step="0.01" value="'+val+'"/></div>';
+    } else if(OPCIONES[c]){
+      html += '<div class="form-field'+full+'"><label>'+c.charAt(0).toUpperCase()+c.slice(1)+'</label>'
+        +'<select id="campo-'+c+'">'
+        +'<option value="">— Selecciona —</option>'
+        +OPCIONES[c].map(function(o){ return '<option value="'+o+'"'+(val===o?' selected':'')+'>'+o+'</option>'; }).join('')
+        +'</select></div>';
+    } else {
+      html += '<div class="form-field'+full+'"><label>'+c.charAt(0).toUpperCase()+c.slice(1)+'</label>'
+        +'<input id="campo-'+c+'" type="text" value="'+val+'"/></div>';
     }
   });
-})();
+
+  // zona imágenes
+  var fotosActuales = p ? getFotosAdmin(p) : [];
+  html += '<div class="img-section full">'
+    +'<div class="img-section-title">Imágenes ('+(fotosActuales.length)+' actuales)</div>';
+
+  // fotos existentes
+  if(fotosActuales.length){
+    html += '<div class="fotos-actuales" id="fotos-actuales">';
+    fotosActuales.forEach(function(url, i){
+      html += '<div class="foto-item" id="foto-item-'+i+'">'
+        +'<img src="'+url+'" alt="foto"/>'
+        +(i===0?'<span class="foto-principal">Principal</span>':'')
+        +'<button class="foto-del" data-url="'+url+'" title="Eliminar foto">×</button>'
+        +'</div>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="fotos-actuales" id="fotos-actuales"></div>';
+  }
+
+  // drop zone
+  html += '<div class="drop-zone" id="drop-zone">'
+    +'<p>📷 Arrastra fotos aquí o haz clic para seleccionar</p>'
+    +'<span>Puedes subir varias fotos a la vez · JPG, PNG, WEBP</span>'
+    +'</div>'
+    +'<input type="file" class="drop-input" id="drop-input" multiple accept="image/*"/>'
+    +'<div class="nuevas-preview" id="nuevas-preview"></div>'
+    +'<div class="upload-progress" id="upload-progress"></div>'
+    +'</div>';
+
+  document.getElementById('form-campos').innerHTML = html;
+
+  // listeners eliminar foto existente
+  document.querySelectorAll('.foto-del').forEach(function(btn){
+    btn.onclick = function(){
+      var url = this.dataset.url;
+      fotosEliminar.push(url);
+      this.closest('.foto-item').remove();
+    };
+  });
+
+  // drop zone
+  var dz  = document.getElementById('drop-zone');
+  var inp = document.getElementById('drop-input');
+  dz.onclick = function(){ inp.click(); };
+  dz.ondragover = function(e){ e.preventDefault(); dz.classList.add('drag-over'); };
+  dz.ondragleave = function(){ dz.classList.remove('drag-over'); };
+  dz.ondrop = function(e){ e.preventDefault(); dz.classList.remove('drag-over'); agregarArchivos(e.dataTransfer.files); };
+  inp.onchange = function(){ agregarArchivos(this.files); this.value=''; };
+
+  document.getElementById('modal-overlay').classList.add('visible');
+}
+
+function agregarArchivos(files){
+  Array.from(files).forEach(function(f){
+    if(!f.type.startsWith('image/')) return;
+    nuevosArchivos.push(f);
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var div = document.createElement('div');
+      div.className = 'nueva-item';
+      div.dataset.idx = nuevosArchivos.length - 1;
+      div.innerHTML = '<img src="'+e.target.result+'"/>'
+        +'<button class="nueva-del">×</button>';
+      div.querySelector('.nueva-del').onclick = function(){
+        var idx = +div.dataset.idx;
+        nuevosArchivos.splice(idx, 1);
+        div.remove();
+        // re-indexar
+        document.querySelectorAll('.nueva-item').forEach(function(item, i){ item.dataset.idx = i; });
+      };
+      document.getElementById('nuevas-preview').appendChild(div);
+    };
+    reader.readAsDataURL(f);
+  });
+}
+
+function cerrarModal(){
+  document.getElementById('modal-overlay').classList.remove('visible');
+  editandoId    = null;
+  fotosEliminar  = [];
+  nuevosArchivos = [];
+}
+
+document.getElementById('modal-close').onclick = cerrarModal;
+document.getElementById('btn-cancel').onclick   = cerrarModal;
+document.getElementById('modal-overlay').onclick = function(e){ if(e.target===this) cerrarModal(); };
+
+// ── GUARDAR ──
+document.getElementById('btn-save').onclick = async function(){
+  var campos = CAMPOS[seccionActual] || ['nombre','marca','precio','disponible'];
+  var data = {};
+  for(var i=0;i<campos.length;i++){
+    var c = campos[i];
+    var el = document.getElementById('campo-'+c);
+    if(!el) continue;
+    var val = el.value;
+    if(c==='precio') val = parseFloat(val)||0;
+    else if(c==='disponible') val = (val==='true');
+    data[c] = val;
+  }
+
+  var prog = document.getElementById('upload-progress');
+
+  // 1. subir nuevas imágenes
+  var urlsNuevas = [];
+  if(nuevosArchivos.length){
+    prog.textContent = 'Subiendo '+nuevosArchivos.length+' imagen(es)…';
+    for(var j=0;j<nuevosArchivos.length;j++){
+      var fd = new FormData();
+      fd.append('archivo', nuevosArchivos[j]);
+      var r = await fetch(BASE+'/api/imagenes/subir',{
+        method:'POST',
+        headers:{Authorization:'Basic '+credenciales},
+        body:fd
+      });
+      var rd = await r.json();
+      urlsNuevas.push(rd.url);
+      prog.textContent = 'Subida '+(j+1)+'/'+nuevosArchivos.length+'…';
+    }
+    prog.textContent = '';
+  }
+
+  // 2. calcular imagenUrl e imagenes
+  // fotos actuales que sobrevivieron (las que NO están en fotosEliminar)
+  var fotasActualesDOM = [];
+  document.querySelectorAll('#fotos-actuales .foto-item img').forEach(function(img){ fotasActualesDOM.push(img.src); });
+
+  var todasLasFotos = fotasActualesDOM.concat(urlsNuevas);
+
+  if(todasLasFotos.length){
+    data.imagenUrl = todasLasFotos[0];
+    data.imagenes  = todasLasFotos.slice(1);
+  } else {
+    data.imagenUrl = null;
+    data.imagenes  = [];
+  }
+
+  // 3. guardar prenda
+  var url    = BASE+'/api/'+seccionActual+(editandoId?'/'+editandoId:'');
+  var method = editandoId ? 'PUT' : 'POST';
+  var resp = await fetch(url,{
+    method:method,
+    headers:{'Content-Type':'application/json',Authorization:'Basic '+credenciales},
+    body:JSON.stringify(data)
+  });
+  if(resp.ok){
+    cerrarModal();
+    mostrarToast(editandoId?'Prenda actualizada':'Prenda creada');
+    cargarSeccion(seccionActual, document.querySelector('.sidebar-item.activo').dataset.titulo);
+  } else {
+    mostrarToast('Error al guardar');
+  }
+};
+
+// ── ELIMINAR ──
+async function eliminar(id){
+  if(!confirm('¿Eliminar esta prenda?')) return;
+  var r = await fetch(BASE+'/api/'+seccionActual+'/'+id,{
+    method:'DELETE',
+    headers:{Authorization:'Basic '+credenciales}
+  });
+  if(r.ok){
+    mostrarToast('Prenda eliminada');
+    cargarSeccion(seccionActual, document.querySelector('.sidebar-item.activo').dataset.titulo);
+  } else {
+    mostrarToast('Error al eliminar');
+  }
+}
+
+function mostrarToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2500);
+}
 </script>
 </body>
 </html>
